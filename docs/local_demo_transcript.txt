@@ -1,0 +1,250 @@
+
+==============================================================================
+NEW HIRE -> UNBLOCK
+------------------------------------------------------------------------------
+How do I set up my dev environment?
+
+==============================================================================
+UNBLOCK -> new hire  [card: detail]
+------------------------------------------------------------------------------
+**Local Development Environment Setup**
+
+What the approved docs say:
+- Clone the monorepo with git clone git@git.lumen.dev:lumen/monorepo.git.  [D12]
+- Start the local stack with make dev, which runs the API, the web app and a local database.  [D12]
+- Install the toolchain by running make bootstrap from the repository root.  [D12]
+
+Confidence: High (100/100). Sources: Local Development Environment Setup (updated 2026-09-22, owner Wei Zhang)
+_Mode: extractive (no AI model). Answers are direct quotes from the docs._
+
+==============================================================================
+NEW HIRE -> UNBLOCK
+------------------------------------------------------------------------------
+How do I deploy to staging?
+
+==============================================================================
+UNBLOCK -> new hire  [card: review]
+------------------------------------------------------------------------------
+**Deploying to Staging**
+
+What the approved docs say:
+- You do not need special access to deploy to staging.  [D13]
+- Manual staging deploys need a green CI build.  [D13]
+- To deploy a branch manually, run lumen deploy --env staging from the repository root.  [D13]
+
+Heads up: 'Deploy Runbook (Legacy)' was last updated 2 years ago and disagrees with newer docs, so it was not used.
+
+Confidence: High (100/100). Sources: Deploying to Staging (updated 2026-10-01, owner Hannah Brooks)
+_Mode: extractive (no AI model). Answers are direct quotes from the docs._
+
+Want me to tell Wei Zhang (the owner) that the old doc is out of date? Reply **approve** to send the note I drafted, or **reject**.
+
+==============================================================================
+NEW HIRE -> UNBLOCK
+------------------------------------------------------------------------------
+reject
+
+==============================================================================
+UNBLOCK -> new hire
+------------------------------------------------------------------------------
+Okay, I discarded the draft. Nothing was sent.
+
+==============================================================================
+NEW HIRE -> UNBLOCK
+------------------------------------------------------------------------------
+How many vacation days do I get?
+
+==============================================================================
+UNBLOCK -> new hire  [card: detail]
+------------------------------------------------------------------------------
+**Time Off Policy: United States**
+
+What the approved docs say:
+- Submit planned time off at least two weeks in advance.  [D06]
+- After your manager agrees, submit the request in People Portal under Time Off.  [D06]
+- Sick time does not need advance approval; record it in People Portal when you return.  [D06]
+
+Confidence: High (93/100). Sources: Time Off Policy: United States (updated 2026-07-01, owner Elena Garcia)
+_Mode: extractive (no AI model). Answers are direct quotes from the docs._
+
+==============================================================================
+NEW HIRE -> UNBLOCK
+------------------------------------------------------------------------------
+wrong person
+
+==============================================================================
+UNBLOCK -> new hire  [card: review]
+------------------------------------------------------------------------------
+Thanks, I noted that Elena Garcia isn't the right person for this and updated the ranking.
+
+What I could verify so far:
+- Submit planned time off at least two weeks in advance.  [D06]
+- After your manager agrees, submit the request in People Portal under Time Off.  [D06]
+- Sick time does not need advance approval; record it in People Portal when you return.  [D06]
+
+Best person to ask: **Sofia Rossi**, People Ops Specialist, EU (skills: time off; on the People Ops team that owns this process; available today).
+
+I drafted this message for you. Nothing is sent until you approve it.
+To: Sofia Rossi <sofia.rossi@lumen.example>
+Subject: New hire question: How many vacation days do I get?
+
+Hi Sofia,
+
+I'm Maya Chen, a new Data Analyst on Growth Insights. I couldn't find a clear answer in our docs and would really appreciate your help.
+
+My question: How many vacation days do I get?
+
+Thank you!
+Maya
+
+Reply **approve**, **reject**, **edit: <your new message>**, or **wrong person**.
+
+==============================================================================
+NEW HIRE -> UNBLOCK
+------------------------------------------------------------------------------
+approve
+
+==============================================================================
+UNBLOCK -> new hire
+------------------------------------------------------------------------------
+**Simulated (email not configured).** Email is not configured, so nothing was sent. Saved to outbox/20261017-141303-a7706f.eml. The Unblock Tracker will check back if there's no reply. Reply **wrong person** if they can't help, and I'll find someone else.
+
+==============================================================================
+(waiting)
+------------------------------------------------------------------------------
+the Tracker notices no reply and offers a follow-up
+
+==============================================================================
+TRACKER -> new hire  [card: review]
+------------------------------------------------------------------------------
+It's been 1 minute since your message to **Sofia Rossi** about "How many vacation days do I get?", and there's no answer yet.
+
+I drafted a friendly follow-up. Nothing is sent until you approve it.
+
+To: Sofia Rossi <sofia.rossi@lumen.example>
+Subject: Following up: How many vacation days do I get?
+
+Hi Sofia,
+
+Just following up on my earlier message about "How many vacation days do I get?". No rush, and thank you for your help!
+
+Maya
+
+Reply **approve**, **reject**, or **edit: <your new message>**.
+
+==============================================================================
+NEW HIRE -> TRACKER
+------------------------------------------------------------------------------
+approve
+
+==============================================================================
+TRACKER -> new hire
+------------------------------------------------------------------------------
+**Simulated (email not configured).** Email is not configured, so nothing was sent. Saved to outbox/20261017-141307-7c7667.eml.
+
+==============================================================================
+NEW HIRE -> UNBLOCK
+------------------------------------------------------------------------------
+I need access to the analytics dashboard
+
+==============================================================================
+UNBLOCK -> new hire  [card: review]
+------------------------------------------------------------------------------
+**Analytics Workspace access needs your manager's approval before Data Platform processes it.**
+
+What I could verify so far:
+- Access to the Analytics Workspace (dashboards, saved reports and the Looker explore views) is granted through the Analytics Workspace Access form at go/analytics-access.  [D01]
+- Standard access is read-only. Editor access to shared dashboards needs a second approval from the dashboard owner.  [D01]
+- In the form, name the project or reporting task that needs access. Requests without a business reason are returned.  [D01]
+
+I drafted this access request for manager approval for you. Nothing is sent until you approve it.
+To: Jordan Lee <jordan.lee@lumen.example>
+Subject: New hire question: I need access to the analytics dashboard
+
+Hi Jordan,
+
+I'm Maya Chen, a new Data Analyst on Growth Insights. Could you approve my analytics access request? I need it for Growth Insights weekly reporting.
+
+My question: I need access to the analytics dashboard
+
+Thank you!
+Maya
+
+Reply **approve**, **reject**, **edit: <your new message>**, or **wrong person**.
+
+==============================================================================
+NEW HIRE -> UNBLOCK
+------------------------------------------------------------------------------
+approve
+
+==============================================================================
+UNBLOCK -> new hire
+------------------------------------------------------------------------------
+Sent request **AR-F0E49D** to Jordan Lee's approval agent. Delivered.
+Only your manager can approve it. I'll message you here as soon as they decide.
+
+==============================================================================
+MANAGER -> MANAGER AGENT
+------------------------------------------------------------------------------
+pending
+
+==============================================================================
+MANAGER AGENT -> manager  [card: review]
+------------------------------------------------------------------------------
+**Approval request AR-F0E49D**: analytics access
+From: Maya Chen, Data Analyst (Growth Insights)
+Subject: New hire question: I need access to the analytics dashboard
+
+Hi Jordan,
+
+I'm Maya Chen, a new Data Analyst on Growth Insights. Could you approve my analytics access request? I need it for Growth Insights weekly reporting.
+
+My question: I need access to the analytics dashboard
+
+Thank you!
+Maya
+
+Evidence Unblock verified in approved docs:
+- Access to the Analytics Workspace (dashboards, saved reports and the Looker explore views) is granted through the Analytics Workspace Access form at go/analytics-access. [D01]
+- Standard access is read-only. Editor access to shared dashboards needs a second approval from the dashboard owner. [D01]
+- In the form, name the project or reporting task that needs access. Requests without a business reason are returned. [D01]
+
+Reply **approve AR-F0E49D** or **reject AR-F0E49D <reason>**.
+
+==============================================================================
+MANAGER -> MANAGER AGENT
+------------------------------------------------------------------------------
+approve
+
+==============================================================================
+MANAGER AGENT -> manager
+------------------------------------------------------------------------------
+Done: AR-F0E49D approved. I've told the orchestrator, which will let Maya Chen know.
+
+==============================================================================
+UNBLOCK -> new hire
+------------------------------------------------------------------------------
+**Jordan Lee approved request AR-F0E49D.**
+
+What happens next, from the docs:
+- Access to the Analytics Workspace (dashboards, saved reports and the Looker explore views) is granted through the Analytics Workspace Access form at go/analytics-access.  [D01]
+- Standard access is read-only. Editor access to shared dashboards needs a second approval from the dashboard owner.  [D01]
+- In the form, name the project or reporting task that needs access. Requests without a business reason are returned.  [D01]
+
+==============================================================================
+NEW HIRE -> UNBLOCK
+------------------------------------------------------------------------------
+Can the AI decide whether I deserve a promotion?
+
+==============================================================================
+UNBLOCK -> new hire  [card: detail]
+------------------------------------------------------------------------------
+**This needs a person, not an assistant.** (performance)
+Performance and promotion decisions need accountable human review.
+
+I stopped before searching, choosing anyone, or drafting a message.
+The right person: **Marcus Johnson**, HR Business Partner (HR Business Partner or your manager).
+
+Unblock will never: send or file anything without your approval; grant access or approve its own requests; read private DMs, performance reviews or pay data; present an answer as fact when it can't find the source.
+
+Demo finished.

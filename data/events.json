@@ -1,0 +1,699 @@
+[
+ {
+  "id": "E050",
+  "topic": "design software licenses",
+  "docs_read": [
+   "D08"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-09-17"
+ },
+ {
+  "id": "E053",
+  "topic": "design software licenses",
+  "docs_read": [
+   "D08"
+  ],
+  "resolved_without_ticket": false,
+  "day": "2026-09-17"
+ },
+ {
+  "id": "E068",
+  "topic": "data warehouse query access",
+  "docs_read": [
+   "D03"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-09-17"
+ },
+ {
+  "id": "E073",
+  "topic": "password and mfa",
+  "docs_read": [
+   "D11"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-09-17"
+ },
+ {
+  "id": "E030",
+  "topic": "staging deploys",
+  "docs_read": [
+   "D14"
+  ],
+  "resolved_without_ticket": false,
+  "day": "2026-09-18"
+ },
+ {
+  "id": "E039",
+  "topic": "expense submission",
+  "docs_read": [
+   "D04"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-09-18"
+ },
+ {
+  "id": "E015",
+  "topic": "analytics access",
+  "docs_read": [
+   "D02"
+  ],
+  "resolved_without_ticket": false,
+  "day": "2026-09-19"
+ },
+ {
+  "id": "E042",
+  "topic": "expense submission",
+  "docs_read": [
+   "D04"
+  ],
+  "resolved_without_ticket": false,
+  "day": "2026-09-19"
+ },
+ {
+  "id": "E013",
+  "topic": "analytics access",
+  "docs_read": [
+   "D02"
+  ],
+  "resolved_without_ticket": false,
+  "day": "2026-09-20"
+ },
+ {
+  "id": "E024",
+  "topic": "staging deploys",
+  "docs_read": [
+   "D14"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-09-20"
+ },
+ {
+  "id": "E036",
+  "topic": "expense submission",
+  "docs_read": [
+   "D05"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-09-20"
+ },
+ {
+  "id": "E075",
+  "topic": "password and mfa",
+  "docs_read": [
+   "D11"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-09-20"
+ },
+ {
+  "id": "E003",
+  "topic": "analytics access",
+  "docs_read": [
+   "D02"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-09-21"
+ },
+ {
+  "id": "E016",
+  "topic": "analytics access",
+  "docs_read": [
+   "D01"
+  ],
+  "resolved_without_ticket": false,
+  "day": "2026-09-21"
+ },
+ {
+  "id": "E027",
+  "topic": "staging deploys",
+  "docs_read": [
+   "D13"
+  ],
+  "resolved_without_ticket": false,
+  "day": "2026-09-21"
+ },
+ {
+  "id": "E070",
+  "topic": "data warehouse query access",
+  "docs_read": [
+   "D01"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-09-21"
+ },
+ {
+  "id": "E071",
+  "topic": "data warehouse query access",
+  "docs_read": [
+   "D01"
+  ],
+  "resolved_without_ticket": false,
+  "day": "2026-09-21"
+ },
+ {
+  "id": "E008",
+  "topic": "analytics access",
+  "docs_read": [
+   "D02"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-09-22"
+ },
+ {
+  "id": "E018",
+  "topic": "analytics access",
+  "docs_read": [
+   "D01"
+  ],
+  "resolved_without_ticket": false,
+  "day": "2026-09-23"
+ },
+ {
+  "id": "E057",
+  "topic": "time off setup",
+  "docs_read": [
+   "D06"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-09-23"
+ },
+ {
+  "id": "E059",
+  "topic": "time off setup",
+  "docs_read": [
+   "D06",
+   "D07"
+  ],
+  "resolved_without_ticket": false,
+  "day": "2026-09-23"
+ },
+ {
+  "id": "E064",
+  "topic": "vpn and remote access",
+  "docs_read": [
+   "D10"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-09-23"
+ },
+ {
+  "id": "E009",
+  "topic": "analytics access",
+  "docs_read": [
+   "D01"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-09-24"
+ },
+ {
+  "id": "E010",
+  "topic": "analytics access",
+  "docs_read": [
+   "D01"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-09-25"
+ },
+ {
+  "id": "E035",
+  "topic": "expense submission",
+  "docs_read": [
+   "D04"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-09-25"
+ },
+ {
+  "id": "E067",
+  "topic": "vpn and remote access",
+  "docs_read": [
+   "D10"
+  ],
+  "resolved_without_ticket": false,
+  "day": "2026-09-25"
+ },
+ {
+  "id": "E076",
+  "topic": "badge access",
+  "docs_read": [
+   "D21"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-09-25"
+ },
+ {
+  "id": "E017",
+  "topic": "analytics access",
+  "docs_read": [
+   "D02"
+  ],
+  "resolved_without_ticket": false,
+  "day": "2026-09-26"
+ },
+ {
+  "id": "E031",
+  "topic": "staging deploys",
+  "docs_read": [
+   "D13"
+  ],
+  "resolved_without_ticket": false,
+  "day": "2026-09-26"
+ },
+ {
+  "id": "E034",
+  "topic": "expense submission",
+  "docs_read": [
+   "D05"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-09-26"
+ },
+ {
+  "id": "E021",
+  "topic": "staging deploys",
+  "docs_read": [
+   "D14"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-09-29"
+ },
+ {
+  "id": "E026",
+  "topic": "staging deploys",
+  "docs_read": [
+   "D13"
+  ],
+  "resolved_without_ticket": false,
+  "day": "2026-09-29"
+ },
+ {
+  "id": "E029",
+  "topic": "staging deploys",
+  "docs_read": [
+   "D14",
+   "D13"
+  ],
+  "resolved_without_ticket": false,
+  "day": "2026-09-29"
+ },
+ {
+  "id": "E044",
+  "topic": "expense submission",
+  "docs_read": [
+   "D04"
+  ],
+  "resolved_without_ticket": false,
+  "day": "2026-09-29"
+ },
+ {
+  "id": "E001",
+  "topic": "analytics access",
+  "docs_read": [
+   "D02"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-09-30"
+ },
+ {
+  "id": "E058",
+  "topic": "time off setup",
+  "docs_read": [
+   "D06"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-01"
+ },
+ {
+  "id": "E077",
+  "topic": "badge access",
+  "docs_read": [
+   "D21"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-01"
+ },
+ {
+  "id": "E002",
+  "topic": "analytics access",
+  "docs_read": [
+   "D02"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-03"
+ },
+ {
+  "id": "E014",
+  "topic": "analytics access",
+  "docs_read": [
+   "D01"
+  ],
+  "resolved_without_ticket": false,
+  "day": "2026-10-03"
+ },
+ {
+  "id": "E019",
+  "topic": "staging deploys",
+  "docs_read": [
+   "D14"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-04"
+ },
+ {
+  "id": "E063",
+  "topic": "vpn and remote access",
+  "docs_read": [
+   "D10"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-04"
+ },
+ {
+  "id": "E005",
+  "topic": "analytics access",
+  "docs_read": [
+   "D02"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-05"
+ },
+ {
+  "id": "E038",
+  "topic": "expense submission",
+  "docs_read": [
+   "D05"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-05"
+ },
+ {
+  "id": "E041",
+  "topic": "expense submission",
+  "docs_read": [
+   "D05"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-05"
+ },
+ {
+  "id": "E051",
+  "topic": "design software licenses",
+  "docs_read": [
+   "D08"
+  ],
+  "resolved_without_ticket": false,
+  "day": "2026-10-06"
+ },
+ {
+  "id": "E052",
+  "topic": "design software licenses",
+  "docs_read": [
+   "D08"
+  ],
+  "resolved_without_ticket": false,
+  "day": "2026-10-06"
+ },
+ {
+  "id": "E054",
+  "topic": "time off setup",
+  "docs_read": [
+   "D06"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-06"
+ },
+ {
+  "id": "E004",
+  "topic": "analytics access",
+  "docs_read": [
+   "D02"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-07"
+ },
+ {
+  "id": "E006",
+  "topic": "analytics access",
+  "docs_read": [
+   "D02"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-07"
+ },
+ {
+  "id": "E032",
+  "topic": "staging deploys",
+  "docs_read": [
+   "D14"
+  ],
+  "resolved_without_ticket": false,
+  "day": "2026-10-07"
+ },
+ {
+  "id": "E060",
+  "topic": "time off setup",
+  "docs_read": [
+   "D06",
+   "D07"
+  ],
+  "resolved_without_ticket": false,
+  "day": "2026-10-07"
+ },
+ {
+  "id": "E049",
+  "topic": "design software licenses",
+  "docs_read": [
+   "D08"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-08"
+ },
+ {
+  "id": "E066",
+  "topic": "vpn and remote access",
+  "docs_read": [
+   "D10"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-08"
+ },
+ {
+  "id": "E012",
+  "topic": "analytics access",
+  "docs_read": [
+   "D02"
+  ],
+  "resolved_without_ticket": false,
+  "day": "2026-10-09"
+ },
+ {
+  "id": "E043",
+  "topic": "expense submission",
+  "docs_read": [
+   "D05"
+  ],
+  "resolved_without_ticket": false,
+  "day": "2026-10-09"
+ },
+ {
+  "id": "E045",
+  "topic": "design software licenses",
+  "docs_read": [
+   "D08"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-09"
+ },
+ {
+  "id": "E028",
+  "topic": "staging deploys",
+  "docs_read": [
+   "D13"
+  ],
+  "resolved_without_ticket": false,
+  "day": "2026-10-10"
+ },
+ {
+  "id": "E048",
+  "topic": "design software licenses",
+  "docs_read": [
+   "D08"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-10"
+ },
+ {
+  "id": "E007",
+  "topic": "analytics access",
+  "docs_read": [
+   "D02"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-11"
+ },
+ {
+  "id": "E065",
+  "topic": "vpn and remote access",
+  "docs_read": [
+   "D10"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-11"
+ },
+ {
+  "id": "E020",
+  "topic": "staging deploys",
+  "docs_read": [
+   "D14"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-12"
+ },
+ {
+  "id": "E023",
+  "topic": "staging deploys",
+  "docs_read": [
+   "D14"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-12"
+ },
+ {
+  "id": "E025",
+  "topic": "staging deploys",
+  "docs_read": [
+   "D14"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-12"
+ },
+ {
+  "id": "E011",
+  "topic": "analytics access",
+  "docs_read": [
+   "D02"
+  ],
+  "resolved_without_ticket": false,
+  "day": "2026-10-13"
+ },
+ {
+  "id": "E033",
+  "topic": "expense submission",
+  "docs_read": [
+   "D05"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-14"
+ },
+ {
+  "id": "E047",
+  "topic": "design software licenses",
+  "docs_read": [
+   "D08"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-14"
+ },
+ {
+  "id": "E061",
+  "topic": "time off setup",
+  "docs_read": [
+   "D06"
+  ],
+  "resolved_without_ticket": false,
+  "day": "2026-10-14"
+ },
+ {
+  "id": "E074",
+  "topic": "password and mfa",
+  "docs_read": [
+   "D11"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-14"
+ },
+ {
+  "id": "E022",
+  "topic": "staging deploys",
+  "docs_read": [
+   "D14"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-15"
+ },
+ {
+  "id": "E040",
+  "topic": "expense submission",
+  "docs_read": [
+   "D05"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-15"
+ },
+ {
+  "id": "E046",
+  "topic": "design software licenses",
+  "docs_read": [
+   "D08"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-15"
+ },
+ {
+  "id": "E055",
+  "topic": "time off setup",
+  "docs_read": [
+   "D06",
+   "D07"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-15"
+ },
+ {
+  "id": "E069",
+  "topic": "data warehouse query access",
+  "docs_read": [
+   "D03"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-15"
+ },
+ {
+  "id": "E072",
+  "topic": "data warehouse query access",
+  "docs_read": [
+   "D01"
+  ],
+  "resolved_without_ticket": false,
+  "day": "2026-10-15"
+ },
+ {
+  "id": "E037",
+  "topic": "expense submission",
+  "docs_read": [
+   "D05"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-16"
+ },
+ {
+  "id": "E056",
+  "topic": "time off setup",
+  "docs_read": [
+   "D06"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-16"
+ },
+ {
+  "id": "E062",
+  "topic": "vpn and remote access",
+  "docs_read": [
+   "D10"
+  ],
+  "resolved_without_ticket": true,
+  "day": "2026-10-16"
+ }
+]

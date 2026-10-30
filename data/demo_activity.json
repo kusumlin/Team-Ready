@@ -1,0 +1,882 @@
+[
+{
+"id": 1792273538898339135,
+"ts": 1792273538.898,
+"from": "user",
+"to": "orchestrator",
+"kind": "message",
+"text": "\u201cHow do I set up my dev environment?\u201d"
+},
+{
+"id": 1792273538900605983,
+"ts": 1792273538.901,
+"from": "orchestrator",
+"to": "",
+"kind": "check",
+"text": "Risk gate: safe to answer from the docs"
+},
+{
+"id": 1792273538900760432,
+"ts": 1792273538.901,
+"from": "orchestrator",
+"to": "knowledge",
+"kind": "message",
+"text": "Check the approved docs for this question"
+},
+{
+"id": 1792273538901984593,
+"ts": 1792273538.902,
+"from": "knowledge",
+"to": "",
+"kind": "step",
+"text": "Searching approved docs and checking every claim against its source"
+},
+{
+"id": 1792273538908492067,
+"ts": 1792273538.908,
+"from": "knowledge",
+"to": "",
+"kind": "step",
+"text": "Searched 30 approved docs (keyword (BM25))"
+},
+{
+"id": 1792273538908620043,
+"ts": 1792273538.909,
+"from": "knowledge",
+"to": "",
+"kind": "step",
+"text": "Found 1 relevant doc: Local Development Environment Setup"
+},
+{
+"id": 1792273538908672939,
+"ts": 1792273538.909,
+"from": "knowledge",
+"to": "",
+"kind": "step",
+"text": "Verified 3 of 3 claims word for word"
+},
+{
+"id": 1792273538909027118,
+"ts": 1792273538.909,
+"from": "knowledge",
+"to": "orchestrator",
+"kind": "message",
+"text": "Answer verified, confidence 100/100"
+},
+{
+"id": 1792273538909143392,
+"ts": 1792273538.909,
+"from": "orchestrator",
+"to": "routing",
+"kind": "message",
+"text": "Who's the best person to help?"
+},
+{
+"id": 1792273538910476657,
+"ts": 1792273538.91,
+"from": "routing",
+"to": "",
+"kind": "step",
+"text": "Scored people: 50% skills, 30% team, 20% availability; no protected characteristics"
+},
+{
+"id": 1792273538910566386,
+"ts": 1792273538.911,
+"from": "routing",
+"to": "",
+"kind": "check",
+"text": "Fairness: Wei Zhang and Hannah Brooks are both a strong match. Hannah Brooks has answered fewer questions recently (2 vs 14), so I'm spreading questions across qualified people."
+},
+{
+"id": 1792273538910914869,
+"ts": 1792273538.911,
+"from": "routing",
+"to": "orchestrator",
+"kind": "message",
+"text": "Ask Hannah Brooks (Software Engineer II), score 0.90: skills: dev environment; on the Platform team that owns this process"
+},
+{
+"id": 1792273538911638998,
+"ts": 1792273538.912,
+"from": "orchestrator",
+"to": "insights",
+"kind": "message",
+"text": "Anonymous blocker logged (doc path only, no names or text)"
+},
+{
+"id": 1792273538912781674,
+"ts": 1792273538.913,
+"from": "orchestrator",
+"to": "user",
+"kind": "message",
+"text": "[card] Local Development Environment Setup"
+},
+{
+"id": 1792273538915076026,
+"ts": 1792273538.915,
+"from": "user",
+"to": "orchestrator",
+"kind": "message",
+"text": "\u201cHow do I deploy to staging?\u201d"
+},
+{
+"id": 1792273538915475161,
+"ts": 1792273538.915,
+"from": "orchestrator",
+"to": "",
+"kind": "check",
+"text": "Risk gate: safe to answer from the docs"
+},
+{
+"id": 1792273538915564585,
+"ts": 1792273538.916,
+"from": "orchestrator",
+"to": "knowledge",
+"kind": "message",
+"text": "Check the approved docs for this question"
+},
+{
+"id": 1792273538916506967,
+"ts": 1792273538.917,
+"from": "knowledge",
+"to": "",
+"kind": "step",
+"text": "Searching approved docs and checking every claim against its source"
+},
+{
+"id": 1792273538918037032,
+"ts": 1792273538.918,
+"from": "knowledge",
+"to": "",
+"kind": "step",
+"text": "Searched 30 approved docs (keyword (BM25))"
+},
+{
+"id": 1792273538918152303,
+"ts": 1792273538.918,
+"from": "knowledge",
+"to": "",
+"kind": "block",
+"text": "Flagged 'Deploy Runbook (Legacy)' as stale (950 days old) and left it out"
+},
+{
+"id": 1792273538918209639,
+"ts": 1792273538.918,
+"from": "knowledge",
+"to": "",
+"kind": "step",
+"text": "Found 3 relevant docs: Deploying to Staging, Deploy Runbook (Legacy), Production Access and Deploys"
+},
+{
+"id": 1792273538918254868,
+"ts": 1792273538.918,
+"from": "knowledge",
+"to": "",
+"kind": "step",
+"text": "Verified 3 of 3 claims word for word"
+},
+{
+"id": 1792273538918615574,
+"ts": 1792273538.919,
+"from": "knowledge",
+"to": "orchestrator",
+"kind": "message",
+"text": "Answer verified, confidence 100/100"
+},
+{
+"id": 1792273538918749296,
+"ts": 1792273538.919,
+"from": "orchestrator",
+"to": "routing",
+"kind": "message",
+"text": "Who's the best person to help?"
+},
+{
+"id": 1792273538919867415,
+"ts": 1792273538.92,
+"from": "routing",
+"to": "",
+"kind": "step",
+"text": "Scored people: 50% skills, 30% team, 20% availability; no protected characteristics"
+},
+{
+"id": 1792273538920171874,
+"ts": 1792273538.92,
+"from": "routing",
+"to": "orchestrator",
+"kind": "message",
+"text": "Ask Hannah Brooks (Software Engineer II), score 1.00: owns Deploying to Staging; on the Platform team that owns this process"
+},
+{
+"id": 1792273538920893856,
+"ts": 1792273538.921,
+"from": "orchestrator",
+"to": "",
+"kind": "check",
+"text": "Drafted a message to Wei Zhang; Guardian checked it: clear. Waiting for your approval"
+},
+{
+"id": 1792273538921619729,
+"ts": 1792273538.922,
+"from": "orchestrator",
+"to": "insights",
+"kind": "message",
+"text": "Anonymous blocker logged (doc path only, no names or text)"
+},
+{
+"id": 1792273538922829207,
+"ts": 1792273538.923,
+"from": "orchestrator",
+"to": "user",
+"kind": "message",
+"text": "[card] Deploying to Staging"
+},
+{
+"id": 1792273538925001724,
+"ts": 1792273538.925,
+"from": "user",
+"to": "orchestrator",
+"kind": "message",
+"text": "\u201creject\u201d"
+},
+{
+"id": 1792273538925775677,
+"ts": 1792273538.926,
+"from": "orchestrator",
+"to": "user",
+"kind": "message",
+"text": "Okay, I discarded the draft. Nothing was sent."
+},
+{
+"id": 1792273538927694895,
+"ts": 1792273538.928,
+"from": "user",
+"to": "orchestrator",
+"kind": "message",
+"text": "\u201cHow many vacation days do I get?\u201d"
+},
+{
+"id": 1792273538928046021,
+"ts": 1792273538.928,
+"from": "orchestrator",
+"to": "",
+"kind": "check",
+"text": "Risk gate: safe to answer from the docs"
+},
+{
+"id": 1792273538928127427,
+"ts": 1792273538.928,
+"from": "orchestrator",
+"to": "knowledge",
+"kind": "message",
+"text": "Check the approved docs for this question"
+},
+{
+"id": 1792273538929065436,
+"ts": 1792273538.929,
+"from": "knowledge",
+"to": "",
+"kind": "step",
+"text": "Searching approved docs and checking every claim against its source"
+},
+{
+"id": 1792273538930841486,
+"ts": 1792273538.931,
+"from": "knowledge",
+"to": "",
+"kind": "step",
+"text": "Searched 30 approved docs (keyword (BM25))"
+},
+{
+"id": 1792273538930968878,
+"ts": 1792273538.931,
+"from": "knowledge",
+"to": "",
+"kind": "step",
+"text": "Set aside Time Off Policy: EU Offices: it applies to a different office than yours (US)"
+},
+{
+"id": 1792273538931031507,
+"ts": 1792273538.931,
+"from": "knowledge",
+"to": "",
+"kind": "step",
+"text": "Found 1 relevant doc: Time Off Policy: United States"
+},
+{
+"id": 1792273538931071701,
+"ts": 1792273538.931,
+"from": "knowledge",
+"to": "",
+"kind": "step",
+"text": "Verified 3 of 3 claims word for word"
+},
+{
+"id": 1792273538931424298,
+"ts": 1792273538.931,
+"from": "knowledge",
+"to": "orchestrator",
+"kind": "message",
+"text": "Answer verified, confidence 93/100"
+},
+{
+"id": 1792273538931561272,
+"ts": 1792273538.932,
+"from": "orchestrator",
+"to": "routing",
+"kind": "message",
+"text": "Who's the best person to help?"
+},
+{
+"id": 1792273538932729222,
+"ts": 1792273538.933,
+"from": "routing",
+"to": "",
+"kind": "step",
+"text": "Scored people: 50% skills, 30% team, 20% availability; no protected characteristics"
+},
+{
+"id": 1792273538933036244,
+"ts": 1792273538.933,
+"from": "routing",
+"to": "orchestrator",
+"kind": "message",
+"text": "Ask Elena Garcia (People Operations Partner), score 1.00: owns Time Off Policy: United States; on the People Ops team that owns this process"
+},
+{
+"id": 1792273538933589001,
+"ts": 1792273538.934,
+"from": "orchestrator",
+"to": "insights",
+"kind": "message",
+"text": "Anonymous blocker logged (doc path only, no names or text)"
+},
+{
+"id": 1792273538934775649,
+"ts": 1792273538.935,
+"from": "orchestrator",
+"to": "user",
+"kind": "message",
+"text": "[card] Time Off Policy: United States"
+},
+{
+"id": 1792273538937277606,
+"ts": 1792273538.937,
+"from": "user",
+"to": "orchestrator",
+"kind": "message",
+"text": "\u201cwrong person\u201d"
+},
+{
+"id": 1792273538937491289,
+"ts": 1792273538.937,
+"from": "orchestrator",
+"to": "routing",
+"kind": "message",
+"text": "Feedback: that person couldn't help, rank them lower for this topic"
+},
+{
+"id": 1792273538938331204,
+"ts": 1792273538.938,
+"from": "orchestrator",
+"to": "routing",
+"kind": "message",
+"text": "Who's the best person to help? (skip 1 already tried)"
+},
+{
+"id": 1792273538939438916,
+"ts": 1792273538.939,
+"from": "routing",
+"to": "",
+"kind": "step",
+"text": "Learned: lowered that person's score for this topic (1x)"
+},
+{
+"id": 1792273538939780957,
+"ts": 1792273538.94,
+"from": "routing",
+"to": "",
+"kind": "step",
+"text": "Scored people: 50% skills, 30% team, 20% availability; no protected characteristics"
+},
+{
+"id": 1792273538940127585,
+"ts": 1792273538.94,
+"from": "routing",
+"to": "orchestrator",
+"kind": "message",
+"text": "Ask Sofia Rossi (People Ops Specialist, EU), score 0.84: skills: time off; on the People Ops team that owns this process"
+},
+{
+"id": 1792273538940728696,
+"ts": 1792273538.941,
+"from": "orchestrator",
+"to": "",
+"kind": "check",
+"text": "Drafted a message to Sofia Rossi; Guardian checked it: clear. Waiting for your approval"
+},
+{
+"id": 1792273538941676674,
+"ts": 1792273538.942,
+"from": "orchestrator",
+"to": "user",
+"kind": "message",
+"text": "[card] Thanks, I noted that Elena Garcia isn't the right person for this and updated the ranking."
+},
+{
+"id": 1792273538943739569,
+"ts": 1792273538.944,
+"from": "user",
+"to": "orchestrator",
+"kind": "message",
+"text": "(message hidden: it contains sensitive details)"
+},
+{
+"id": 1792273538944311924,
+"ts": 1792273538.944,
+"from": "orchestrator",
+"to": "",
+"kind": "block",
+"text": "Guardian blocked the draft to Sofia Rossi: contains a password or passcode"
+},
+{
+"id": 1792273538945754602,
+"ts": 1792273538.946,
+"from": "orchestrator",
+"to": "user",
+"kind": "message",
+"text": "[card] Updated your draft."
+},
+{
+"id": 1792273538948036892,
+"ts": 1792273538.948,
+"from": "user",
+"to": "orchestrator",
+"kind": "message",
+"text": "\u201cedit: Hi Sofia, how many vacation days do new US hires get in their first year? Thanks, Maya\u201d"
+},
+{
+"id": 1792273538948512836,
+"ts": 1792273538.949,
+"from": "orchestrator",
+"to": "",
+"kind": "check",
+"text": "Drafted a message to Sofia Rossi; Guardian checked it: clear. Waiting for your approval"
+},
+{
+"id": 1792273538950629344,
+"ts": 1792273538.951,
+"from": "orchestrator",
+"to": "user",
+"kind": "message",
+"text": "[card] Updated your draft. Guardian checked it: clear to send."
+},
+{
+"id": 1792273538953598660,
+"ts": 1792273538.954,
+"from": "user",
+"to": "orchestrator",
+"kind": "message",
+"text": "\u201capprove\u201d"
+},
+{
+"id": 1792273538956039667,
+"ts": 1792273538.956,
+"from": "orchestrator",
+"to": "people",
+"kind": "done",
+"text": "Email simulated (no SMTP set up): \"New hire question: How many vacation days do I get?\" after your approval"
+},
+{
+"id": 1792273538956747501,
+"ts": 1792273538.957,
+"from": "orchestrator",
+"to": "insights",
+"kind": "message",
+"text": "Anonymous blocker logged (doc path only, no names or text)"
+},
+{
+"id": 1792273538958218032,
+"ts": 1792273538.958,
+"from": "orchestrator",
+"to": "tracker",
+"kind": "message",
+"text": "Track MS-F8F032: waiting for Sofia Rossi to reply"
+},
+{
+"id": 1792273538959553543,
+"ts": 1792273538.96,
+"from": "orchestrator",
+"to": "user",
+"kind": "message",
+"text": "Simulated (email not configured). Email is not configured, so nothing was sent. The TeamReady Tracker will check back if there's no reply. Reply wrong person if they can't help, and I'll find someo\u2026"
+},
+{
+"id": 1792273542887594094,
+"ts": 1792273542.888,
+"from": "tracker",
+"to": "",
+"kind": "step",
+"text": "No reply from Sofia Rossi after 1 minute; offering a follow-up"
+},
+{
+"id": 1792273542887752176,
+"ts": 1792273542.888,
+"from": "tracker",
+"to": "user",
+"kind": "message",
+"text": "[card] Want me to send a friendly reminder?"
+},
+{
+"id": 1792273542892366555,
+"ts": 1792273542.892,
+"from": "user",
+"to": "tracker",
+"kind": "message",
+"text": "\u201capprove\u201d"
+},
+{
+"id": 1792273542895000424,
+"ts": 1792273542.895,
+"from": "tracker",
+"to": "people",
+"kind": "done",
+"text": "Reminder to Sofia Rossi after your approval: simulated"
+},
+{
+"id": 1792273542895902931,
+"ts": 1792273542.896,
+"from": "tracker",
+"to": "user",
+"kind": "message",
+"text": "Simulated (email not configured). Email is not configured, so nothing was sent."
+},
+{
+"id": 1792273542898942032,
+"ts": 1792273542.899,
+"from": "user",
+"to": "orchestrator",
+"kind": "message",
+"text": "\u201cI need access to the analytics dashboard\u201d"
+},
+{
+"id": 1792273542899603911,
+"ts": 1792273542.9,
+"from": "orchestrator",
+"to": "",
+"kind": "step",
+"text": "Risk gate: analytics access needs the manager's approval"
+},
+{
+"id": 1792273542899766224,
+"ts": 1792273542.9,
+"from": "orchestrator",
+"to": "knowledge",
+"kind": "message",
+"text": "Check the approved docs for this question"
+},
+{
+"id": 1792273542901266517,
+"ts": 1792273542.901,
+"from": "knowledge",
+"to": "",
+"kind": "step",
+"text": "Searching approved docs and checking every claim against its source"
+},
+{
+"id": 1792273542904188388,
+"ts": 1792273542.904,
+"from": "knowledge",
+"to": "",
+"kind": "step",
+"text": "Searched 30 approved docs (keyword (BM25))"
+},
+{
+"id": 1792273542904332859,
+"ts": 1792273542.904,
+"from": "knowledge",
+"to": "",
+"kind": "step",
+"text": "Found 3 relevant docs: Analytics Workspace Access Guide, Growth Insights Dashboard Conventions, Data Warehouse Query Access"
+},
+{
+"id": 1792273542904479346,
+"ts": 1792273542.904,
+"from": "knowledge",
+"to": "",
+"kind": "step",
+"text": "Verified 3 of 3 claims word for word"
+},
+{
+"id": 1792273542904926293,
+"ts": 1792273542.905,
+"from": "knowledge",
+"to": "orchestrator",
+"kind": "message",
+"text": "Answer verified, confidence 100/100"
+},
+{
+"id": 1792273542905958501,
+"ts": 1792273542.906,
+"from": "orchestrator",
+"to": "",
+"kind": "check",
+"text": "Drafted a message to Jordan Lee; Guardian checked it: clear. Waiting for your approval"
+},
+{
+"id": 1792273542907477301,
+"ts": 1792273542.907,
+"from": "orchestrator",
+"to": "user",
+"kind": "message",
+"text": "[card] Analytics Workspace access needs your manager's approval before Data Platform processes it."
+},
+{
+"id": 1792273542910479629,
+"ts": 1792273542.91,
+"from": "user",
+"to": "orchestrator",
+"kind": "message",
+"text": "\u201capprove\u201d"
+},
+{
+"id": 1792273542910776132,
+"ts": 1792273542.911,
+"from": "orchestrator",
+"to": "manager",
+"kind": "message",
+"text": "Approval request AR-456B90 (analytics access) for the manager"
+},
+{
+"id": 1792273542913418830,
+"ts": 1792273542.913,
+"from": "orchestrator",
+"to": "tracker",
+"kind": "message",
+"text": "Track AR-456B90: waiting for Jordan Lee to reply"
+},
+{
+"id": 1792273542914793588,
+"ts": 1792273542.915,
+"from": "orchestrator",
+"to": "user",
+"kind": "message",
+"text": "Sent request AR-456B90 to Jordan Lee's approval agent. Delivered."
+},
+{
+"id": 1792273542918853435,
+"ts": 1792273542.919,
+"from": "manager",
+"to": "",
+"kind": "step",
+"text": "AR-456B90 is waiting for the manager. Only a person can approve it"
+},
+{
+"id": 1792273542921292921,
+"ts": 1792273542.921,
+"from": "manager_person",
+"to": "manager",
+"kind": "message",
+"text": "\u201cpending\u201d"
+},
+{
+"id": 1792273542922811181,
+"ts": 1792273542.923,
+"from": "manager",
+"to": "manager_person",
+"kind": "message",
+"text": "[card] Approval request AR-456B90: analytics access"
+},
+{
+"id": 1792273542924743857,
+"ts": 1792273542.925,
+"from": "manager_person",
+"to": "manager",
+"kind": "message",
+"text": "\u201capprove\u201d"
+},
+{
+"id": 1792273542925672278,
+"ts": 1792273542.926,
+"from": "manager",
+"to": "manager_person",
+"kind": "message",
+"text": "Done: AR-456B90 approved. I've told the orchestrator, which will let Maya Chen know."
+},
+{
+"id": 1792273542926903494,
+"ts": 1792273542.927,
+"from": "manager",
+"to": "orchestrator",
+"kind": "message",
+"text": "Jordan Lee approved AR-456B90"
+},
+{
+"id": 1792273542929600964,
+"ts": 1792273542.93,
+"from": "tracker",
+"to": "",
+"kind": "done",
+"text": "AR-456B90 closed: approved"
+},
+{
+"id": 1792273542931771871,
+"ts": 1792273542.932,
+"from": "user",
+"to": "orchestrator",
+"kind": "message",
+"text": "\u201cCan the AI decide whether I deserve a promotion?\u201d"
+},
+{
+"id": 1792273542931946162,
+"ts": 1792273542.932,
+"from": "orchestrator",
+"to": "",
+"kind": "block",
+"text": "Risk gate stopped it: performance. No search, no draft; handing it to a person"
+},
+{
+"id": 1792273542932797157,
+"ts": 1792273542.933,
+"from": "orchestrator",
+"to": "user",
+"kind": "message",
+"text": "[card] This needs a person, not an assistant. (performance)"
+},
+{
+"id": 1792273579225206561,
+"ts": 1792273579.225,
+"from": "people_ops",
+"to": "insights",
+"kind": "message",
+"text": "\u201cfriction map\u201d"
+},
+{
+"id": 1792273579227232044,
+"ts": 1792273579.227,
+"from": "insights",
+"to": "people_ops",
+"kind": "message",
+"text": "Friction Map: last 30 days (Synthetic events. Topics and doc paths only: no names, no message text.)"
+},
+{
+"id": 1792273579229484227,
+"ts": 1792273579.229,
+"from": "people_ops",
+"to": "insights",
+"kind": "message",
+"text": "\u201cfull report\u201d"
+},
+{
+"id": 1792273579230422582,
+"ts": 1792273579.23,
+"from": "insights",
+"to": "people_ops",
+"kind": "message",
+"text": "Payment request: 0.1 FET (ref FR-D9B512DC)"
+},
+{
+"id": 1792273579232169505,
+"ts": 1792273579.232,
+"from": "insights",
+"to": "people_ops",
+"kind": "message",
+"text": "The full report with a drafted doc fix costs 0.1 FET. I've sent a payment request in this chat."
+},
+{
+"id": 1792273579234749548,
+"ts": 1792273579.235,
+"from": "insights",
+"to": "",
+"kind": "check",
+"text": "Payment checked: reference, amount and wallet match (0.1 FET)"
+},
+{
+"id": 1792273579236353738,
+"ts": 1792273579.236,
+"from": "insights",
+"to": "creao",
+"kind": "message",
+"text": "Draft a fix for 'New Hire Systems Checklist': 18 new-hire blockers about analytics access"
+},
+{
+"id": 1792273579236473468,
+"ts": 1792273579.236,
+"from": "creao",
+"to": "",
+"kind": "step",
+"text": "Doc Steward run run-42 started (runs take a few minutes)"
+},
+{
+"id": 1792273579237209329,
+"ts": 1792273579.237,
+"from": "insights",
+"to": "people_ops",
+"kind": "message",
+"text": "Full Friction Map report (groups of 5+ only)"
+},
+{
+"id": 1792273579237508735,
+"ts": 1792273579.238,
+"from": "creao",
+"to": "",
+"kind": "step",
+"text": "Doc Steward run run-42: running\u2026"
+},
+{
+"id": 1792273581239274112,
+"ts": 1792273581.239,
+"from": "creao",
+"to": "",
+"kind": "step",
+"text": "Doc Steward run run-42: running\u2026"
+},
+{
+"id": 1792273583242665794,
+"ts": 1792273583.243,
+"from": "creao",
+"to": "insights",
+"kind": "message",
+"text": "Drafted a one-line fix to the doc"
+},
+{
+"id": 1792273583242780110,
+"ts": 1792273583.243,
+"from": "insights",
+"to": "",
+"kind": "check",
+"text": "Exact-quote check passed: the fix quotes the doc word for word"
+},
+{
+"id": 1792273583242840129,
+"ts": 1792273583.243,
+"from": "insights",
+"to": "people_ops",
+"kind": "message",
+"text": "[card] Send this doc fix to the doc owner?"
+},
+{
+"id": 1792273583245893809,
+"ts": 1792273583.246,
+"from": "people_ops",
+"to": "insights",
+"kind": "message",
+"text": "\u201capprove\u201d"
+},
+{
+"id": 1792273583248546796,
+"ts": 1792273583.249,
+"from": "insights",
+"to": "people",
+"kind": "done",
+"text": "Fix sent to Elena Garcia, the doc owner, who decides whether to publish (simulated)"
+},
+{
+"id": 1792273583248764833,
+"ts": 1792273583.249,
+"from": "insights",
+"to": "people_ops",
+"kind": "message",
+"text": "Simulated. Email is not configured, so nothing was sent. Elena Garcia decides whether to publish it."
+}
+]

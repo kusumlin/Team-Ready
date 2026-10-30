@@ -1,0 +1,150 @@
+{
+  "stop_categories": [
+    {
+      "category": "performance",
+      "terms": [
+        "promotion",
+        "promoted",
+        "get promoted",
+        "performance review",
+        "performance reviews",
+        "performance rating",
+        "my performance",
+        "how am i evaluated",
+        "performance evaluated",
+        "performance plan",
+        "deserve a raise",
+        "on a pip",
+        "performance improvement plan"
+      ],
+      "human_id": "p06",
+      "channel": "HR Business Partner or your manager",
+      "reason": "Performance and promotion decisions need accountable human review."
+    },
+    {
+      "category": "compensation",
+      "terms": [
+        "salary",
+        "salary band",
+        "compensation",
+        "a raise",
+        "pay raise",
+        "pay increase",
+        "bonus",
+        "equity",
+        "stock options",
+        "paycheck",
+        "payday",
+        "pay stub",
+        "paystub",
+        "get paid",
+        "how much do i make",
+        "how much am i paid",
+        "my pay"
+      ],
+      "human_id": "p06",
+      "channel": "HR Business Partner",
+      "reason": "Pay and compensation questions are handled by HR, not an assistant."
+    },
+    {
+      "category": "benefits",
+      "terms": [
+        "eligible for benefits",
+        "benefits eligibility",
+        "eligible for insurance",
+        "insurance",
+        "health insurance",
+        "dental",
+        "vision plan",
+        "401k",
+        "401(k)",
+        "retirement plan",
+        "insurance coverage",
+        "am i covered"
+      ],
+      "human_id": "p06",
+      "channel": "HR Business Partner",
+      "reason": "Benefits and eligibility questions are answered by HR. TeamReady can only point you to the right place."
+    },
+    {
+      "category": "employment status",
+      "terms": [
+        "fired",
+        "get fired",
+        "termination",
+        "terminate",
+        "terminated",
+        "layoff",
+        "layoffs",
+        "laid off",
+        "quit",
+        "resign",
+        "resignation",
+        "visa",
+        "immigration",
+        "work permit"
+      ],
+      "human_id": "p06",
+      "channel": "HR Business Partner",
+      "reason": "Employment status questions need a confidential conversation with a person."
+    },
+    {
+      "category": "harassment or wellbeing",
+      "terms": [
+        "harass*",
+        "discriminat*",
+        "unsafe",
+        "bullied",
+        "bullying",
+        "hostile",
+        "mental health",
+        "overwhelmed",
+        "burnout",
+        "burned out",
+        "retaliat*"
+      ],
+      "human_id": "p06",
+      "channel": "HR Business Partner, or the confidential Employee Assistance line",
+      "reason": "This deserves a confidential conversation with a person who can help."
+    }
+  ],
+  "approval_categories": [
+    {
+      "category": "production access",
+      "terms": [
+        "production access",
+        "prod access",
+        "access to prod",
+        "access to production",
+        "prod db",
+        "production db",
+        "production database",
+        "prod database",
+        "production server",
+        "prod server",
+        "admin access",
+        "root access",
+        "sudo",
+        "break-glass",
+        "break glass"
+      ],
+      "approver": "manager",
+      "reason": "Elevated access always needs your manager's approval. TeamReady prepares the request but never files it on its own."
+    },
+    {
+      "category": "analytics access",
+      "terms": [
+        "analytics workspace access",
+        "dashboard access",
+        "access to the analytics",
+        "access to the dashboard",
+        "looker access"
+      ],
+      "approver": "manager",
+      "reason": "Analytics Workspace access needs your manager's approval before Data Platform processes it."
+    }
+  ],
+  "message_actions_need_user_approval": true,
+  "min_cohort_size": 5,
+  "default_helper": "p05"
+}

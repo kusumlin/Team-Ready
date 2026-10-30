@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TeamReady Canary New Hires</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27%3E%3Crect width=%2724%27 height=%2724%27 rx=%276%27 fill=%27%231f66ff%27/%3E%3Cpath d=%27M5.5 12.5l4 4L18.5 7.5%27 fill=%27none%27 stroke=%27white%27 stroke-width=%273%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E">
+<meta name="description" content="Synthetic new hires walk your onboarding docs before real people do, and show where they'd get stuck.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #F2F4F3; --ink: #16202E; --muted: #5A6573; --line: #D5DAD8; --card: #FFFFFF;
+  --pine: #1F6B57; --pine-soft: #DCEBE4; --amber: #B97A12; --amber-soft: #F6E7C8;
+  --brick: #B4473B; --brick-soft: #F3DCD8; --sky: #2F5E9E; --sky-soft: #DDE6F3;
+  --plum: #7A4A8C; --plum-soft: #ECE0F1;
+  --display: "Bricolage Grotesque", system-ui, sans-serif;
+  --body: "Source Sans 3", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #11171F; --ink: #E6EAEE; --muted: #9AA5B1; --line: #2A3542; --card: #18212C;
+    --pine: #5FB89A; --pine-soft: #17372E; --amber: #E3AD52; --amber-soft: #3A2E17;
+    --brick: #E58276; --brick-soft: #3D2120; --sky: #84A9DE; --sky-soft: #1C2B42;
+    --plum: #C59AD6; --plum-soft: #33243B; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #11171F; --ink: #E6EAEE; --muted: #9AA5B1; --line: #2A3542; --card: #18212C;
+  --pine: #5FB89A; --pine-soft: #17372E; --amber: #E3AD52; --amber-soft: #3A2E17;
+  --brick: #E58276; --brick-soft: #3D2120; --sky: #84A9DE; --sky-soft: #1C2B42;
+  --plum: #C59AD6; --plum-soft: #33243B; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 16px/1.5 var(--body); overflow-wrap: anywhere; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 20px 56px; }
+header { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; justify-content: space-between; margin-bottom: 28px; }
+.brand { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.brand a { font: 700 24px/1 var(--display); font-stretch: 80%; letter-spacing: -0.02em; color: var(--ink); text-decoration: none; }
+.brand span { font: 650 20px/1.1 var(--display); font-stretch: 85%; color: var(--muted); }
+nav { display: flex; gap: 16px; flex-wrap: wrap; font-size: 15px; }
+nav a { color: var(--muted); }
+
+.hero { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; align-items: end; margin-bottom: 24px; }
+.hero h1 { font: 750 clamp(34px, 5vw, 56px)/0.98 var(--display); font-stretch: 78%; letter-spacing: -0.025em; margin: 0 0 14px; text-wrap: balance; }
+.hero p { margin: 0; color: var(--muted); font-size: 18px; max-width: 60ch; }
+.runbox { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px; }
+.runbox .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+button { font: 600 16px var(--body); padding: 10px 16px; border-radius: 10px; border: 1px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; }
+button.primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+button:disabled { opacity: 0.5; cursor: default; }
+.pill { display: inline-flex; align-items: center; gap: 7px; font: 600 12.5px var(--body); text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 10px; border-radius: 999px; background: var(--pine-soft); color: var(--pine); }
+.pill i { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.pill.running i { animation: blink 1.2s infinite; }
+.pill.idle { background: var(--sky-soft); color: var(--sky); }
+@keyframes blink { 50% { opacity: 0.25; } }
+.runbox small { display: block; color: var(--muted); font-size: 13.5px; margin-top: 10px; }
+
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 24px; }
+.stat { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+.stat b { display: block; font: 750 34px/1 var(--display); font-stretch: 80%; font-variant-numeric: tabular-nums; }
+.stat span { color: var(--muted); font-size: 14px; }
+.stat.warn b { color: var(--brick); } .stat.ok b { color: var(--pine); } .stat.pred b { color: var(--amber); }
+
+h2 { font: 650 14px/1 var(--body); text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); margin: 0 0 12px; }
+.lanes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-bottom: 32px; }
+.lane { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.who { display: flex; gap: 12px; align-items: center; padding: 14px 16px; border-bottom: 1px solid var(--line); }
+.av { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; font: 700 18px var(--display); background: var(--sky-soft); color: var(--sky); flex: none; }
+.who strong { display: block; font: 650 17px/1.2 var(--body); }
+.who em { font-style: normal; color: var(--muted); font-size: 14px; }
+.progress { height: 3px; background: var(--line); }
+.progress div { height: 100%; width: 0; background: var(--pine); transition: width 0.4s; }
+ol.steps { list-style: none; margin: 0; padding: 6px 0; }
+ol.steps li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; padding: 8px 16px; animation: in 0.35s ease-out; }
+@keyframes in { from { opacity: 0; transform: translateY(6px); } }
+ol.steps li.wait { color: var(--muted); animation: none; }
+.dot { width: 14px; height: 14px; border-radius: 50%; margin-top: 4px; border: 2px solid var(--line); }
+.task { font-size: 15px; line-height: 1.35; }
+.meta { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin-top: 4px; font-size: 13px; color: var(--muted); }
+.chip { font: 600 12px var(--body); padding: 2px 8px; border-radius: 999px; }
+.s-clear .dot, .s-findable .dot { background: var(--pine); border-color: var(--pine); }
+.s-clear .chip, .s-findable .chip { background: var(--pine-soft); color: var(--pine); }
+.s-approval .dot, .s-person .dot { background: var(--plum); border-color: var(--plum); }
+.s-approval .chip, .s-person .chip { background: var(--plum-soft); color: var(--plum); }
+.s-detour .dot { background: var(--amber); border-color: var(--amber); }
+.s-detour .chip { background: var(--amber-soft); color: var(--amber); }
+.s-trap .dot, .s-loop .dot, .s-dead_end .dot { background: var(--brick); border-color: var(--brick); }
+.s-trap .chip, .s-loop .chip, .s-dead_end .chip { background: var(--brick-soft); color: var(--brick); }
+
+.cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px; margin-bottom: 12px; }
+.card h3 { font: 650 18px/1.25 var(--body); margin: 8px 0 6px; }
+.card p { margin: 0 0 6px; color: var(--muted); font-size: 15px; }
+.tagline { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.badge { font: 600 12px var(--body); text-transform: uppercase; letter-spacing: 0.05em; padding: 3px 9px; border-radius: 999px; }
+.badge.pred { background: var(--amber-soft); color: var(--amber); }
+.badge.conf { background: var(--sky-soft); color: var(--sky); }
+.diff { font: 400 14px/1.45 var(--mono); border-radius: 10px; overflow: hidden; border: 1px solid var(--line); margin: 10px 0; }
+.diff div { padding: 8px 10px; }
+.diff .minus { background: var(--brick-soft); text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--brick) 55%, transparent); }
+.diff .plus { background: var(--pine-soft); }
+.fixfoot { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; justify-content: space-between; font-size: 13.5px; color: var(--muted); }
+.fixfoot button { padding: 8px 14px; font-size: 15px; }
+.sent { color: var(--pine); font-weight: 600; }
+.empty { color: var(--muted); padding: 18px; border: 1px dashed var(--line); border-radius: 14px; text-align: center; }
+.foot { color: var(--muted); font-size: 13.5px; margin-top: 18px; max-width: 90ch; }
+a { color: var(--sky); }
+
+@media (max-width: 900px) {
+  .hero, .cols { grid-template-columns: minmax(0, 1fr); }
+  .lanes { grid-template-columns: minmax(0, 1fr); }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand"><a href="/"><span style="color:#1f66ff">Team</span>Ready<svg viewBox="0 0 24 24" width="0.9em" height="0.9em" style="margin-left:2px;vertical-align:-0.05em;fill:none;stroke:#2f72ff;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="M3 13.5l5.5 5L21 5"/></svg></a><span>Canary New Hires</span></div>
+    <nav><a href="/app">New Hire Portal</a><a href="/activity" target="_blank" rel="noopener">Agent activity ↗</a></nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1>Your docs get tested before your people do.</h1>
+      <p>Three synthetic new hires go through onboarding with only your docs. Every step is a real question to TeamReady's
+        verified-answer pipeline. Where they'd get stuck, you see it first, with a fix for the doc's owner.</p>
+    </div>
+    <div class="runbox">
+      <div class="row">
+        <button class="primary" id="run">Run the canaries</button>
+        <span class="pill idle" id="state"><i></i><span id="stateText">No run yet</span></span>
+      </div>
+      <small id="runinfo">Takes about a minute. Fictional people and synthetic docs only; no real new hire is involved.</small>
+    </div>
+  </section>
+
+  <section class="stats" aria-label="Run summary">
+    <div class="stat warn"><b id="sWalls">–</b><span>walls found</span></div>
+    <div class="stat"><b id="sConf">–</b><span>already hit by real new hires</span></div>
+    <div class="stat pred"><b id="sPred">–</b><span>predicted: nobody has hit them yet</span></div>
+    <div class="stat ok"><b id="sHours">–</b><span>hours a 3-person cohort would lose (est.)</span></div>
+  </section>
+
+  <h2>The walk</h2>
+  <section class="lanes" id="lanes"><div class="empty">Press <strong>Run the canaries</strong> to send three synthetic new hires through onboarding.</div></section>
+
+  <div class="cols">
+    <section><h2>Walls</h2><div id="walls"><div class="empty">Walls show up here after a run.</div></div></section>
+    <section><h2>Fixes for the doc owners</h2><div id="fixes"><div class="empty">Each wall gets a fix. A person approves before anything is sent.</div></div></section>
+  </div>
+  <p class="foot" id="note"></p>
+</div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const h = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+  let run = null, timer = null, key = "";
+  try { key = sessionStorage.getItem("ub_manager_key") || ""; } catch (e) {}
+
+  function setState(r) {
+    const pill = $("state");
+    if (!r || r.status === "none") { pill.className = "pill idle"; $("stateText").textContent = "No run yet"; return; }
+    const running = r.status === "running";
+    pill.className = "pill" + (running ? " running" : r.status === "interrupted" ? " idle" : "");
+    $("stateText").textContent = running ? "Walking the docs" : r.status === "interrupted" ? "Interrupted" : "Done";
+    const when = new Date(r.finished || r.started);
+    $("runinfo").textContent = `${r.run_id} · ${running ? "started" : "finished"} ${when.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`
+      + ` · ${r.trigger === "scheduled" ? "scheduled run" : "started by hand"} · model: ${r.llm}`;
+    $("run").disabled = running;
+  }
+
+  function lanes(r) {
+    const box = $("lanes"); box.textContent = "";
+    for (const c of r.canaries) {
+      const lane = h("article", "lane");
+      const who = h("div", "who"); const av = h("div", "av", c.name.replace("Canary ", "")[0]);
+      const t = h("div"); t.append(h("strong", "", c.name), h("em", "", `${c.role} · ${c.team} · ${c.office} office`));
+      who.append(av, t);
+      const bar = h("div", "progress"); const fill = h("div"); fill.style.width = (100 * c.steps.length / c.total) + "%"; bar.append(fill);
+      const ol = h("ol", "steps");
+      for (const s of c.steps) {
+        const li = h("li", "s-" + s.status); li.title = s.why;
+        const body = h("div"); body.append(h("div", "task", s.task));
+        const meta = h("div", "meta"); meta.append(h("span", "chip", s.label));
+        const src = s.cited && s.cited.length ? s.cited[0].title : "";
+        if (s.status === "trap") meta.append(h("span", "", "out-of-date doc still comes up"));
+        else if (s.rephrased) meta.append(h("span", "", "found only after rephrasing"));
+        else if (src && s.status !== "loop") meta.append(h("span", "", src));
+        body.append(meta);
+        li.append(h("span", "dot"), body); ol.append(li);
+      }
+      for (let i = c.steps.length; i < (r.status === "running" ? c.total : 0); i++) {
+        const li = h("li", "wait"); li.append(h("span", "dot"), h("div", "task", i === c.steps.length ? "Trying the next step…" : "…")); ol.append(li);
+      }
+      lane.append(who, bar, ol); box.append(lane);
+    }
+  }
+
+  function walls(r) {
+    const box = $("walls"); box.textContent = "";
+    if (r.status === "interrupted") { box.append(h("div", "empty", "This run was interrupted before it finished. Press Run the canaries to start a new one.")); return; }
+    if (r.status !== "done") { box.append(h("div", "empty", "Walls show up here when the run finishes.")); return; }
+    if (!r.walls.length) { box.append(h("div", "empty", "No walls. Every canary could finish onboarding from the docs.")); return; }
+    for (const w of r.walls) {
+      const card = h("article", "card");
+      const tl = h("div", "tagline s-" + w.status);
+      tl.append(h("span", "chip", w.label));
+      tl.append(w.predicted ? h("span", "badge pred", "Predicted") : h("span", "badge conf", `Confirmed · ${w.humans_hit} real blockers in 30 days`));
+      card.append(tl, h("h3", "", w.headline), h("p", "", w.why),
+        h("p", "", `Hit by ${w.canaries.join(", ")}` + (w.owner && w.owner.name ? ` · doc owner: ${w.owner.name}` : "")));
+      box.append(card);
+    }
+  }
+
+  function fixes(r) {
+    const box = $("fixes"); box.textContent = "";
+    if (r.status !== "done") { box.append(h("div", "empty", "Fixes are drafted when the run finishes.")); return; }
+    for (const f of r.fixes) {
+      const card = h("article", "card");
+      const kind = { edit: "One-line edit", archive: "Archive note", write: "Writing request" }[f.kind];
+      card.append(h("div", "tagline"));
+      card.firstChild.append(h("span", "badge conf", `${f.id} · ${kind}`));
+      card.append(h("h3", "", `To ${f.to.name}, ${f.to.role}` + (f.doc_title ? ` · '${f.doc_title}'` : "")));
+      if (f.status === "drafting") {
+        card.append(h("p", "", "The CREAO Doc Steward is drafting this fix now. Its draft still has to quote the doc word for word."));
+        if (f.run_url) { const a = h("a", "", "Open the CREAO run ↗"); a.href = f.run_url; a.target = "_blank"; a.rel = "noopener"; card.append(a); }
+      } else if (f.status === "blocked") {
+        card.append(h("p", "", f.error || "Blocked by the exact-quote check."));
+      } else {
+        const d = h("div", "diff");
+        if (f.before) d.append(h("div", "minus", f.before));
+        d.append(h("div", "plus", f.after));
+        card.append(d);
+        if (f.rationale) card.append(h("p", "", f.rationale));
+        const foot = h("div", "fixfoot");
+        const by = h("span", "", "Drafted by " + f.drafter);
+        if (f.run_url) { const a = h("a", "", " (CREAO run)"); a.href = f.run_url; a.target = "_blank"; a.rel = "noopener"; by.append(a); }
+        foot.append(by);
+        if (f.status === "sent") foot.append(h("span", "sent", "Sent to " + f.to.name));
+        else { const b = h("button", "", "Send to " + f.to.name.split(" ")[0]); b.onclick = () => approve(f, b); foot.append(b); }
+        card.append(foot);
+      }
+      box.append(card);
+    }
+  }
+
+  function stats(r) {
+    const s = r.summary;
+    $("sWalls").textContent = s ? s.walls : "–"; $("sConf").textContent = s ? s.confirmed : "–";
+    $("sPred").textContent = s ? s.predicted : "–";
+    $("sHours").textContent = s ? (s.minutes_saved_per_cohort / 60).toFixed(1) : "–";
+    $("note").textContent = s ? s.minutes_note + " Walls are checked against the Friction Map (last 30 days, topics and doc paths only)." : "";
+  }
+
+  function render(r) {
+    run = r; setState(r);
+    if (!r || r.status === "none") return;
+    lanes(r); walls(r); fixes(r); stats(r);
+  }
+
+  async function poll() {
+    clearTimeout(timer);
+    try { const r = await (await fetch("/api/canary/latest")).json(); render(r);
+      const drafting = r.fixes && r.fixes.some(f => f.status === "drafting");
+      if (r.status === "running" || drafting) timer = setTimeout(poll, r.status === "running" ? 700 : 5000);
+    } catch (e) { timer = setTimeout(poll, 3000); }
+  }
+
+  $("run").onclick = async () => {
+    $("run").disabled = true;
+    const res = await fetch("/api/canary/run", { method: "POST" });
+    if (!res.ok) { const e = await res.json().catch(() => ({})); alert(e.detail || "Couldn't start a run."); $("run").disabled = false; return; }
+    render(await res.json()); poll();
+  };
+
+  async function approve(f, btn) {
+    btn.disabled = true;
+    const send = () => fetch("/api/canary/approve", { method: "POST", headers: { "Content-Type": "application/json", "X-Manager-Key": key },
+                                                       body: JSON.stringify({ run_id: run.run_id, fix_id: f.id }) });
+    let res = await send();
+    if (res.status === 403) {
+      key = prompt("People Ops key (the portal's manager key):") || "";
+      try { sessionStorage.setItem("ub_manager_key", key); } catch (e) {}
+      res = await send();
+    }
+    const out = await res.json().catch(() => ({}));
+    if (!res.ok || !out.ok) { alert(out.detail || "Not sent."); btn.disabled = false; return; }
+    poll();
+  }
+
+  poll();
+})();
+</script>
+</body>
+</html>

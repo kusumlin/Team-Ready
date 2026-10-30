@@ -1,0 +1,14 @@
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+data/runtime/
+outbox/
+eval/results_*.json
+*.sqlite
+agent*_data.json
+.venv/
+logs/
+friction.json
+.DS_Store
+demo/

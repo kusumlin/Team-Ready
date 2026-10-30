@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TeamReady</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27%3E%3Crect width=%2724%27 height=%2724%27 rx=%276%27 fill=%27%231f66ff%27/%3E%3Cpath d=%27M5.5 12.5l4 4L18.5 7.5%27 fill=%27none%27 stroke=%27white%27 stroke-width=%273%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E">
+<meta name="description" content="TeamReady answers new-hire questions only from approved docs, proves every claim, and finds the right person when the docs fall short.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #F2F4F3; --ink: #16202E; --muted: #55606E; --line: #D5DAD8;
+  --pine: #1F6B57; --pine-soft: #DCEBE4; --amber: #D4952B; --amber-soft: #F6E7C8;
+  --brick: #B4473B; --brick-soft: #F3DCD8; --card: #FFFFFF;
+  --display: "Bricolage Grotesque", system-ui, sans-serif;
+  --body: "Source Sans 3", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #121922; --ink: #E6EAEE; --muted: #9AA5B1; --line: #2B3644; --card: #1A232F;
+    --pine: #5FB89A; --pine-soft: #183A30; --amber: #E3AD52; --amber-soft: #3A2E17;
+    --brick: #E07A6E; --brick-soft: #3D2120;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; overflow-wrap: anywhere; background: var(--paper); color: var(--ink); font: 400 18px/1.55 var(--body); }
+a { color: var(--pine); }
+:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+header.site { display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: space-between; align-items: baseline; padding: 22px 0; }
+.mark { font: 700 26px/1 var(--display); font-stretch: 80%; letter-spacing: -0.02em; text-decoration: none; color: var(--ink); }
+header.site nav a { margin-left: 20px; color: var(--muted); text-decoration: none; font-size: 16px; }
+header.site nav a:hover { color: var(--ink); }
+
+.hero > *, .two > * { min-width: 0; }
+.hero { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; padding: 40px 0 72px; align-items: start; }
+h1 { font: 760 clamp(40px, 6vw, 72px)/0.98 var(--display); font-stretch: 78%; letter-spacing: -0.03em; margin: 0 0 22px; }
+.lede { font-size: 21px; color: var(--muted); max-width: 34ch; margin: 0 0 28px; }
+.facts { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; max-width: 40ch; }
+.facts li { padding-left: 22px; position: relative; }
+.facts li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 10px; height: 10px; border-radius: 2px; background: var(--pine); }
+
+.demo { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+.demo label { display: block; font-weight: 600; margin-bottom: 8px; }
+.askrow { display: flex; gap: 8px; }
+.askrow input { flex: 1; min-width: 0; font: inherit; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); color: var(--ink); }
+button { font: 600 17px var(--body); padding: 12px 18px; border-radius: 10px; border: 0; background: var(--ink); color: var(--paper); cursor: pointer; }
+button:disabled { opacity: 0.6; cursor: wait; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 0; }
+.chips button { background: transparent; color: var(--muted); border: 1px solid var(--line); font-weight: 400; font-size: 15px; padding: 6px 10px; }
+.chips button:hover { color: var(--ink); border-color: var(--ink); }
+#result { margin-top: 20px; }
+.verdict { font: 700 22px/1.2 var(--display); font-stretch: 85%; margin: 0 0 4px; }
+.why { color: var(--muted); margin: 0 0 14px; }
+.claim { display: flex; gap: 10px; align-items: baseline; padding: 8px 0; border-top: 1px solid var(--line); }
+.src { flex: none; font-size: 13px; font-weight: 600; color: var(--pine); background: var(--pine-soft); border-radius: 6px; padding: 1px 7px; }
+.blocked { color: var(--brick); }
+.blocked s { text-decoration-thickness: 2px; }
+.blocked .src { color: var(--brick); background: var(--brick-soft); }
+.note { background: var(--amber-soft); border-radius: 8px; padding: 10px 12px; margin: 12px 0 0; }
+details.trace { margin-top: 14px; color: var(--muted); font-size: 16px; }
+details.trace summary { cursor: pointer; }
+.conf { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 12px; font-size: 14px; color: var(--muted); }
+.conf b { display: block; color: var(--ink); font-size: 16px; }
+
+section.block { padding: 64px 0; border-top: 1px solid var(--line); }
+h2 { font: 720 clamp(30px, 4vw, 44px)/1.05 var(--display); font-stretch: 82%; letter-spacing: -0.02em; margin: 0 0 12px; }
+.sub { color: var(--muted); max-width: 62ch; margin: 0 0 28px; }
+.fmap { display: grid; gap: 14px; max-width: 820px; }
+.row { display: grid; grid-template-columns: minmax(150px, 230px) 1fr 70px; gap: 14px; align-items: center; }
+.bar { height: 22px; border-radius: 5px; background: linear-gradient(to right, var(--pine) var(--ok), var(--amber) var(--ok)); width: var(--w); min-width: 4px; }
+.row .n { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+.pattern { grid-column: 1 / -1; margin: -6px 0 4px; color: var(--muted); font-size: 16px; }
+.legend { display: flex; gap: 18px; margin: 18px 0 0; color: var(--muted); font-size: 15px; }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.totals { display: flex; flex-wrap: wrap; gap: 32px; margin: 0 0 26px; }
+.totals div b { display: block; font: 700 34px/1 var(--display); font-stretch: 85%; color: var(--ink); }
+.totals div { color: var(--muted); }
+
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+ol.rules { padding-left: 22px; margin: 0; display: grid; gap: 10px; max-width: 56ch; }
+.agents { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.agents li b { display: block; }
+.agents code { font-size: 13px; color: var(--muted); word-break: break-all; }
+footer { padding: 40px 0 60px; color: var(--muted); font-size: 15px; border-top: 1px solid var(--line); }
+
+@media (max-width: 860px) {
+  .hero, .two { grid-template-columns: 1fr; gap: 32px; }
+  .row { grid-template-columns: 1fr 56px; }
+  .row .bar { grid-column: 1 / -1; grid-row: 2; }
+  .conf { grid-template-columns: repeat(2, 1fr); }
+  header.site nav a { margin: 0 14px 0 0; }
+  .totals { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .wrap { padding: 0 16px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .bar { transition: width 0.6s ease-out; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <a class="mark" style="font-weight:800;letter-spacing:-0.02em;text-transform:none" href="/"><span style="color:#1f66ff">Team</span>Ready<svg viewBox="0 0 24 24" width="0.9em" height="0.9em" style="margin-left:2px;vertical-align:-0.05em;fill:none;stroke:#2f72ff;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="M3 13.5l5.5 5L21 5"/></svg></a>
+    <nav><a href="/app"><strong>Open the portal</strong></a><a href="/workday"><strong>Workday view</strong></a><a href="/canary">Canary new hires</a><a href="/activity">Agent activity</a><a href="#friction">Friction Map</a><a href="#honest">How it stays honest</a></nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <h1>Stuck in your first weeks? Ask. It won't make things up.</h1>
+        <p class="lede">TeamReady answers new-hire questions only from approved company docs, proves every claim, and finds the right person when the docs fall short.</p>
+        <ul class="facts">
+          <li>Every claim is checked word for word against its source before you see it.</li>
+          <li>Nothing is sent for you until you approve it. Access goes to your manager.</li>
+          <li>Pay, performance and harassment questions go straight to a person.</li>
+        </ul>
+      </div>
+
+      <div class="demo" aria-live="polite">
+        <form id="ask">
+          <label for="q">Ask what a new hire at Lumen Labs would ask</label>
+          <div class="askrow">
+            <input id="q" name="q" autocomplete="off" placeholder="How do I deploy to staging?" required maxlength="500">
+            <button id="go" type="submit">Ask</button>
+          </div>
+        </form>
+        <div class="chips" aria-label="Example questions">
+          <button type="button">How do I deploy to staging?</button>
+          <button type="button">How many vacation days do I get?</button>
+          <button type="button">I need access to the analytics dashboard</button>
+          <button type="button">Can the AI decide whether I deserve a promotion?</button>
+        </div>
+        <div id="result"></div>
+      </div>
+    </section>
+
+    <section class="block" id="friction">
+      <h2>What keeps blocking new hires</h2>
+      <p class="sub">The Friction Map groups repeated blockers into patterns People Ops can fix. It stores a topic and the doc someone read first, never names or messages, and hides any group smaller than five.</p>
+      <div class="totals" id="totals"></div>
+      <div class="fmap" id="fmap"><p class="sub">Loading the last 30 days…</p></div>
+      <div class="legend"><span><i style="background:var(--pine)"></i>Solved without a ticket</span><span><i style="background:var(--amber)"></i>Needed a person</span></div>
+    </section>
+
+    <section class="block two" id="use">
+      <div>
+        <h2>Use it</h2>
+        <p class="sub">The full assistant lives in ASI:One. Search for <b>teamready-orchestrator</b>, or message its address. There it drafts messages, 1:1 invites and access requests, and sends them only after you approve.</p>
+        <p class="sub">Prefer talking? The TeamReady voice agent answers out loud through the same verifier, so a spoken answer is held to the same proof as a written one.</p>
+      </div>
+      <div>
+        <h2>The agents</h2>
+        <ul class="agents" id="agents"></ul>
+      </div>
+    </section>
+
+    <section class="block two" id="honest">
+      <div>
+        <h2>How it stays honest</h2>
+        <p class="sub">A model drafts each answer as claims with quotes. Plain code then keeps a claim only if all of these hold:</p>
+      </div>
+      <ol class="rules">
+        <li>It cites a doc that was actually retrieved for your question.</li>
+        <li>Its quote appears word for word in that doc.</li>
+        <li>The quote isn't cut out of a sentence that says "not".</li>
+        <li>Most of the claim's words appear in the quote.</li>
+        <li>Every number in the claim is in the quote.</li>
+        <li>If nothing survives, TeamReady asks a person instead of guessing.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>Lumen Labs is a fictional company. All docs, people and events are synthetic. Built for the LA Hacks AI Hackathon 2026.</footer>
+</div>
+
+<script>
+const $ = (s) => document.querySelector(s);
+const esc = (t) => String(t ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function render(r) {
+  const verdicts = {
+    answer: "Verified answer",
+    approval: "Needs your manager's approval",
+    route: "A person should answer this",
+    stop: "This needs a person, not an assistant",
+  };
+  let html = `<p class="verdict">${verdicts[r.kind] || "Result"}</p>`;
+  if (r.reason) html += `<p class="why">${esc(r.reason)}</p>`;
+  for (const c of [...(r.claims || []), ...(r.steps || [])]) {
+    html += `<div class="claim"><span class="src">${esc(c.source_id)}</span><span>${esc(c.text)}</span></div>`;
+  }
+  for (const b of r.blocked || []) {
+    html += `<div class="claim blocked"><span class="src">blocked</span><span><s>${esc(b.text)}</s><br><small>${esc(b.reason)}</small></span></div>`;
+  }
+  for (const c of r.conflicts || []) html += `<p class="note">${esc(c.description)}</p>`;
+  if (r.helper) html += `<p class="note">Best person to ask: <b>${esc(r.helper.name)}</b>, ${esc(r.helper.role)}${r.helper.reasons ? ` (${esc(r.helper.reasons.join("; "))})` : ""}.</p>`;
+  if (r.citations && r.citations.length) {
+    html += `<p class="why" style="margin-top:12px">Sources: ${r.citations.map((c) => `${esc(c.title)} (updated ${esc(c.updated_at)}, owner ${esc(c.owner)})`).join("; ")}</p>`;
+  }
+  if (r.confidence) {
+    const f = r.confidence.factors;
+    html += `<div class="conf">${Object.keys(f).map((k) => `<div><b>${f[k].points}/${f[k].max}</b>${k}</div>`).join("")}</div>`;
+    html += `<p class="why" style="margin-top:8px">Confidence: ${esc(r.confidence.label)} (${r.confidence.score}/100)</p>`;
+  }
+  if (r.trace && r.trace.length) html += `<details class="trace"><summary>What TeamReady did</summary><ol>${r.trace.map((t) => `<li>${esc(t)}</li>`).join("")}</ol></details>`;
+  if (r.llm === "extractive") html += `<p class="why">Running without an AI model: answers are direct quotes.</p>`;
+  $("#result").innerHTML = html;
+}
+
+async function ask(q) {
+  const btn = $("#go");
+  btn.disabled = true; btn.textContent = "Checking…";
+  $("#result").innerHTML = `<p class="why">Searching approved docs and verifying every claim…</p>`;
+  try {
+    const res = await fetch("/api/ask", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ question: q }) });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.detail || "The request failed.");
+    render(data);
+  } catch (e) {
+    $("#result").innerHTML = `<p class="note">${esc(e.message)} Try again in a moment.</p>`;
+  } finally {
+    btn.disabled = false; btn.textContent = "Ask";
+  }
+}
+
+$("#ask").addEventListener("submit", (e) => { e.preventDefault(); const q = $("#q").value.trim(); if (q) ask(q); });
+document.querySelectorAll(".chips button").forEach((b) => b.addEventListener("click", () => { $("#q").value = b.textContent; ask(b.textContent); }));
+
+const label = (t) => (t[0].toUpperCase() + t.slice(1)).replace(/\bvpn\b/i, "VPN").replace(/\bmfa\b/i, "MFA");
+
+async function loadFriction() {
+  try {
+    const m = await (await fetch("/api/friction")).json();
+    $("#totals").innerHTML = `
+      <div><b>${m.total_blockers}</b>blockers in ${m.window_days} days</div>
+      <div><b>${Math.round(m.resolved_without_ticket_share * 100)}%</b>solved without a ticket</div>
+      <div><b>${m.process_gaps}</b>fixable process gaps</div>
+      <div><b>${m.hidden_small_cohort_events}</b>events hidden in small groups</div>`;
+    const max = Math.max(...m.clusters.map((c) => c.count), 1);
+    $("#fmap").innerHTML = m.clusters.map((c) => `
+      <div class="row">
+        <span>${esc(label(c.topic))}</span>
+        <span class="bar" style="--w:${(c.count / max) * 100}%; --ok:${c.resolved_share * 100}%" role="img" aria-label="${c.count} blockers, ${Math.round(c.resolved_share * 100)}% solved without a ticket"></span>
+        <span class="n">${c.count}</span>
+        ${c.pattern ? `<p class="pattern">${esc(c.pattern)}.</p>` : ""}
+      </div>`).join("") + `<p class="why">Data from ${esc(m.storage)}. ${esc(m.data_note)}</p>`;
+  } catch {
+    $("#fmap").innerHTML = `<p class="note">The Friction Map couldn't load. Refresh to try again.</p>`;
+  }
+}
+
+async function loadAgents() {
+  try {
+    const list = await (await fetch("/api/agents")).json();
+    $("#agents").innerHTML = list.map((a) => `<li><b>${esc(a.name)}</b><code>${esc(a.address)}</code></li>`).join("");
+  } catch { /* the page still works without the list */ }
+}
+
+loadFriction();
+loadAgents();
+</script>
+</body>
+</html>

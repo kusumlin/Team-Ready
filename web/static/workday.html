@@ -1,0 +1,836 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TeamReady for Workday</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27%3E%3Crect width=%2724%27 height=%2724%27 rx=%276%27 fill=%27%231f66ff%27/%3E%3Cpath d=%27M5.5 12.5l4 4L18.5 7.5%27 fill=%27none%27 stroke=%27white%27 stroke-width=%273%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E">
+<meta name="description" content="A new hire's onboarding home: TeamReady does the onboarding work, and a person approves every action.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f3f5f9; --card: #ffffff; --line: #e5e9f0; --line-2: #d4dae4; --soft: #f1f4f8; --soft-2: #e9edf3;
+  --ink: #0f1a2c; --ink-2: #4a586e; --ink-3: #7c889d;
+  --blue: #0b5bd3; --blue-h: #094cb2; --blue-tint: #ebf3ff; --blue-tint-2: #dbe9ff; --blue-ink: #0b5bd3;
+  --green: #17864a; --green-dot: #22a35a; --green-tint: #e5f6ec;
+  --amber: #9a5a00; --amber-dot: #f0a020; --amber-tint: #fff4e0;
+  --red: #c5281c; --red-dot: #e5484d; --red-tint: #fdecea;
+  --nav: #13213a; --nav-2: #1f2f4c; --nav-3: #2a3d5e; --nav-mute: rgba(255, 255, 255, 0.62);
+  --logo: #f6b600; --logo-ink: #13213a;
+  --shadow: 0 1px 2px rgba(16, 30, 54, 0.04), 0 8px 24px rgba(16, 30, 54, 0.05);
+  --shadow-hi: 0 2px 4px rgba(16, 30, 54, 0.05), 0 14px 32px rgba(16, 30, 54, 0.09);
+  --font: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0a0f18; --card: #121925; --line: #212b3a; --line-2: #2e3a4d; --soft: #19212f; --soft-2: #212b3b;
+    --ink: #e9eef6; --ink-2: #aab5c7; --ink-3: #7d899e;
+    --blue: #3a7cf0; --blue-h: #5b93f5; --blue-tint: #14233f; --blue-tint-2: #1b2f54; --blue-ink: #8db4ff;
+    --green: #5cc98a; --green-tint: #11291c; --amber: #f2b85e; --amber-tint: #2e230f; --red: #ff8a80; --red-tint: #361614;
+    --nav: #0b1322; --nav-2: #18243a; --nav-3: #23324d;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25); --shadow-hi: 0 2px 4px rgba(0, 0, 0, 0.35), 0 14px 32px rgba(0, 0, 0, 0.35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0a0f18; --card: #121925; --line: #212b3a; --line-2: #2e3a4d; --soft: #19212f; --soft-2: #212b3b;
+  --ink: #e9eef6; --ink-2: #aab5c7; --ink-3: #7d899e;
+  --blue: #3a7cf0; --blue-h: #5b93f5; --blue-tint: #14233f; --blue-tint-2: #1b2f54; --blue-ink: #8db4ff;
+  --green: #5cc98a; --green-tint: #11291c; --amber: #f2b85e; --amber-tint: #2e230f; --red: #ff8a80; --red-tint: #361614;
+  --nav: #0b1322; --nav-2: #18243a; --nav-3: #23324d;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25); --shadow-hi: 0 2px 4px rgba(0, 0, 0, 0.35), 0 14px 32px rgba(0, 0, 0, 0.35);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--ink); font: 400 14px/1.5 var(--font); -webkit-font-smoothing: antialiased; overflow-wrap: anywhere; }
+button, input, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+a { color: var(--blue-ink); text-decoration: none; }
+a:hover { text-decoration: underline; }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+svg.i { width: 18px; height: 18px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+.wrap { max-width: 1320px; margin: 0 auto; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
+
+/* ---------- top bar ---------- */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: var(--nav); color: #fff; }
+.top .wrap { height: 64px; display: flex; align-items: center; gap: 20px; }
+.logo { display: flex; align-items: center; gap: 10px; color: #fff; flex: none; }
+.logo:hover { text-decoration: none; }
+.logo b { display: none; width: 36px; height: 36px; border-radius: 10px; background: #1f66ff; place-items: center; }
+.logo b svg { width: 20px; height: 20px; fill: none; stroke: #fff; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; }
+.wm { display: inline-flex; align-items: center; font: 800 21px/1 var(--font); letter-spacing: -0.03em; color: #fff; }
+.wm .t { color: #4d8bff; }
+.wm svg { width: 19px; height: 19px; margin-left: 3px; fill: none; stroke: #4d8bff; stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; }
+.logo small { display: block; font: 500 12px/1 var(--font); color: var(--nav-mute); margin-top: 5px; }
+.search { flex: 1; max-width: 460px; position: relative; }
+.search svg { position: absolute; left: 14px; top: 11px; color: var(--nav-mute); }
+.search input { width: 100%; height: 40px; border: 1px solid transparent; border-radius: 12px; background: var(--nav-2); color: #fff; padding: 0 14px 0 42px; }
+.search input::placeholder { color: var(--nav-mute); }
+.search input:focus { outline: none; border-color: rgba(255, 255, 255, 0.35); background: var(--nav-3); }
+.right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+.roles { display: inline-flex; padding: 4px; border-radius: 12px; background: var(--nav-2); }
+.roles button { border: 0; background: transparent; border-radius: 9px; padding: 7px 12px; font-size: 13px; font-weight: 600; color: var(--nav-mute); white-space: nowrap; }
+.roles button:hover { color: #fff; }
+.roles button span { font-weight: 500; opacity: 0.8; }
+.roles button[aria-pressed="true"] { background: #fff; color: var(--nav); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); }
+.askb { display: none; }
+.mebtn { position: relative; width: 38px; height: 38px; border-radius: 50%; border: 0; background: var(--blue); color: #fff; display: grid; place-items: center; font: 700 13px var(--font); }
+.count { position: absolute; top: -3px; right: -3px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: var(--red-dot); color: #fff; font: 700 10.5px/18px var(--font); text-align: center; box-shadow: 0 0 0 2px var(--nav); }
+
+/* ---------- layout ---------- */
+.shell { display: grid; grid-template-columns: minmax(0, 1fr) 390px; gap: 24px; align-items: start; padding-block: 24px 40px; }
+.shell.solo { grid-template-columns: minmax(0, 1fr); }
+.main { display: grid; gap: 20px; min-width: 0; }
+.stack { display: grid; gap: 20px; min-width: 0; }
+.duo { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+.duo > * { min-width: 0; }
+
+/* ---------- hero ---------- */
+.hero { position: relative; overflow: hidden; border-radius: 24px; color: #fff; padding: 32px 36px;
+  background: linear-gradient(118deg, #0a4fc4 0%, #0d63e0 48%, #22a3ec 100%); box-shadow: 0 10px 30px rgba(11, 91, 211, 0.22); }
+.hero::before, .hero::after { content: ""; position: absolute; border-radius: 50%; pointer-events: none; }
+.hero::before { width: 380px; height: 380px; right: -90px; top: -150px; background: rgba(255, 255, 255, 0.09); }
+.hero::after { width: 240px; height: 240px; right: 140px; bottom: -150px; background: rgba(255, 255, 255, 0.07); }
+.hero-in { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px 40px; align-items: end; }
+.hero .eyebrow { font-size: 14px; font-weight: 500; color: rgba(255, 255, 255, 0.82); margin: 0; }
+.hero h1 { margin: 6px 0 0; font: 800 40px/1.1 var(--font); letter-spacing: -0.025em; text-wrap: balance; }
+.hero .sub { margin: 8px 0 0; font-size: 16px; color: rgba(255, 255, 255, 0.86); }
+.meter { margin-top: 26px; max-width: 560px; }
+.meter .lbl { display: flex; justify-content: space-between; gap: 12px; font-size: 13.5px; font-weight: 600; }
+.meter .lbl span:last-child { color: rgba(255, 255, 255, 0.82); font-weight: 500; }
+.meter .tr { margin-top: 10px; height: 10px; border-radius: 999px; background: rgba(255, 255, 255, 0.22); overflow: hidden; }
+.meter .fl { height: 100%; width: 0; border-radius: 999px; background: #fff; transition: width 0.5s ease; }
+.glass { min-width: 260px; padding: 16px 18px; border-radius: 16px; background: rgba(255, 255, 255, 0.13); border: 1px solid rgba(255, 255, 255, 0.2); backdrop-filter: blur(6px); }
+.glass dl { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 8px 18px; font-size: 13px; }
+.glass dt { color: rgba(255, 255, 255, 0.72); }
+.glass dd { margin: 0; font-weight: 600; }
+.glass p { margin: 10px 0 0; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.16); font-size: 11.5px; color: rgba(255, 255, 255, 0.7); }
+.kpis { position: relative; z-index: 1; margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; }
+.kpis div { min-width: 150px; padding: 14px 18px; border-radius: 16px; background: rgba(255, 255, 255, 0.13); border: 1px solid rgba(255, 255, 255, 0.18); }
+.kpis b { display: block; font: 800 28px/1.1 var(--font); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.kpis span { font-size: 12.5px; color: rgba(255, 255, 255, 0.8); }
+
+/* ---------- cards ---------- */
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow); padding: 24px 26px; min-width: 0; }
+.card-h { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; margin-bottom: 18px; }
+.card-h h2 { margin: 0; font: 700 19px/1.25 var(--font); letter-spacing: -0.015em; }
+.card-h .meta { color: var(--ink-3); font-size: 13px; }
+.card-h .end { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 38px; padding: 0 18px; border-radius: 999px; border: 1px solid var(--line-2); background: var(--card); color: var(--ink); font-weight: 600; font-size: 13.5px; white-space: nowrap; transition: background 0.15s, border-color 0.15s, color 0.15s; }
+.btn:hover { border-color: var(--ink-3); }
+.btn.primary { background: var(--blue); border-color: var(--blue); color: #fff; box-shadow: 0 2px 6px rgba(11, 91, 211, 0.25); }
+.btn.primary:hover { background: var(--blue-h); border-color: var(--blue-h); }
+.btn.tint { background: var(--blue-tint); border-color: transparent; color: var(--blue-ink); }
+.btn.tint:hover { background: var(--blue-tint-2); }
+.btn.danger { color: var(--red); }
+.btn.sm { height: 32px; padding: 0 14px; font-size: 13px; }
+.btn.link { border: 0; background: none; padding: 0; height: auto; color: var(--blue-ink); box-shadow: none; }
+.btn.link:hover { text-decoration: underline; }
+.btn:disabled { opacity: 0.45; cursor: default; }
+.empty-box { border: 1.5px dashed var(--line-2); border-radius: 14px; padding: 22px; text-align: center; color: var(--ink-3); font-size: 13.5px; }
+.empty-box b { display: block; color: var(--ink-2); font-weight: 600; margin-bottom: 2px; }
+.muted { color: var(--ink-3); margin: 0; }
+.pill { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 11px; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; background: var(--soft-2); color: var(--ink-2); }
+.pill.blue { background: var(--blue-tint); color: var(--blue-ink); }
+.pill.green { background: var(--green-tint); color: var(--green); }
+.pill.amber { background: var(--amber-tint); color: var(--amber); }
+.pill.red { background: var(--red-tint); color: var(--red); }
+
+/* awaiting tiles */
+.tiles { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.tile { position: relative; padding: 18px 20px 18px 24px; border-radius: 14px; background: var(--blue-tint); overflow: hidden; }
+.tile::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--blue); }
+.tile.calm { background: var(--soft); }
+.tile.calm::before { background: var(--amber-dot); }
+.tile .ey { font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue-ink); }
+.tile.calm .ey { color: var(--amber); }
+.tile h3 { margin: 6px 0 0; font: 700 17px/1.35 var(--font); letter-spacing: -0.01em; text-wrap: pretty; }
+.tile .sub { margin: 4px 0 0; color: var(--ink-2); font-size: 13.5px; }
+.tile .foot { margin-top: 14px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+.tile .go { display: flex; flex-wrap: wrap; gap: 8px; margin-left: auto; }
+.guard { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-2); }
+.guard::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--green-dot); box-shadow: 0 0 0 3px var(--green-tint); flex: none; }
+.guard.bad { color: var(--red); } .guard.bad::before { background: var(--red-dot); box-shadow: 0 0 0 3px var(--red-tint); }
+.tile .detail { margin-top: 14px; padding: 14px; border-radius: 12px; background: var(--card); font-size: 13.5px; }
+.tile .detail p { margin: 0 0 10px; white-space: pre-wrap; }
+.tile .detail ul { margin: 4px 0 10px; padding-left: 18px; color: var(--ink-2); }
+.tile .detail input { width: 100%; height: 38px; border-radius: 10px; border: 1px solid var(--line-2); padding: 0 12px; background: var(--card); }
+.inline-key { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.inline-key input { flex: 1; min-width: 0; max-width: 320px; height: 38px; border-radius: 999px; border: 1px solid var(--line-2); padding: 0 16px; background: var(--card); }
+
+/* journey */
+.steps { list-style: none; margin: 0 -12px; padding: 0; }
+.steps li { position: relative; display: grid; grid-template-columns: 36px minmax(0, 1fr) auto; gap: 16px; align-items: center; padding: 14px 12px; border-radius: 14px; transition: background 0.15s; }
+.steps li + li::before { content: ""; position: absolute; left: 12px; right: 12px; top: 0; height: 1px; background: var(--line); }
+.steps li:hover { background: var(--soft); }
+.steps li:hover::before, .steps li:hover + li::before { opacity: 0; }
+.num { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--soft-2); color: var(--ink-2); font: 700 14px var(--font); }
+.num.ok { background: var(--green-dot); color: #fff; }
+.num.wait { background: var(--amber-tint); color: var(--amber); }
+.num.todo { background: var(--blue-tint); color: var(--blue-ink); }
+.num svg { width: 16px; height: 16px; stroke-width: 2.6; }
+.steps .txt b { display: block; font-weight: 700; font-size: 15px; letter-spacing: -0.005em; }
+.steps .txt small { display: block; margin-top: 2px; color: var(--ink-3); font-size: 13px; }
+.steps li.isdone .txt b { color: var(--ink-2); }
+.steps .end { display: flex; align-items: center; gap: 12px; justify-content: flex-end; }
+
+/* lists */
+.rows { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.rows > li { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 4px 14px; align-items: center; padding: 12px 0; }
+.rows > li + li { border-top: 1px solid var(--line); }
+.rows .ic { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; background: var(--green-tint); color: var(--green); grid-row: span 2; align-self: start; }
+.rows .ic.amber { background: var(--amber-tint); color: var(--amber); }
+.rows .ic.blue { background: var(--blue-tint); color: var(--blue-ink); }
+.rows .ic.red { background: var(--red-tint); color: var(--red); }
+.rows b { font-weight: 700; font-size: 14px; }
+.rows small { grid-column: 2 / span 2; color: var(--ink-2); font-size: 13px; line-height: 1.45; }
+.rows code { grid-column: 2 / span 2; font: 11.5px var(--mono); color: var(--ink-3); }
+.rows .r { display: flex; align-items: center; gap: 8px; justify-content: flex-end; }
+.rows > li.plain { display: block; padding: 0; border: 0; }
+
+/* quick actions */
+.acts { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.acts li { flex: 1 1 170px; }
+.acts button { width: 100%; height: 100%; display: flex; align-items: center; gap: 12px; text-align: left; padding: 14px; border-radius: 14px; border: 1px solid var(--line); background: var(--card); font-weight: 600; font-size: 13.5px; line-height: 1.3; transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s; }
+.acts button:hover { border-color: var(--blue-tint-2); box-shadow: var(--shadow-hi); transform: translateY(-1px); }
+.acts .ai { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; background: var(--blue-tint); color: var(--blue-ink); flex: none; }
+
+/* ops */
+.bars { display: grid; gap: 12px; }
+.bar-row { display: grid; grid-template-columns: minmax(130px, 220px) minmax(0, 1fr) 40px; gap: 14px; align-items: center; font-size: 13.5px; font-weight: 500; }
+.bar-row .tr { height: 10px; background: var(--soft-2); border-radius: 999px; overflow: hidden; }
+.bar-row .fl { height: 100%; background: var(--blue); border-radius: 999px; }
+.bar-row .fl.gap { background: var(--amber-dot); }
+.bar-row span:last-child { text-align: right; color: var(--ink-2); font-weight: 700; font-variant-numeric: tabular-nums; }
+.caption { color: var(--ink-3); font-size: 12.5px; margin: 16px 0 0; }
+
+/* how it works */
+.how { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px 28px; margin: 0; }
+.how dt { font-weight: 700; margin-bottom: 3px; font-size: 14px; }
+.how dd { margin: 0; color: var(--ink-2); font-size: 13px; line-height: 1.5; }
+.legal { color: var(--ink-3); font-size: 12px; margin: 0; }
+
+/* ---------- assistant ---------- */
+.panel { position: sticky; top: calc(88px + env(safe-area-inset-top, 0px)); height: calc(100vh - 112px); min-height: 520px; display: flex; flex-direction: column; padding: 0; overflow: hidden; }
+.asst-h { display: flex; align-items: center; gap: 12px; padding: 18px 20px; border-bottom: 1px solid var(--line); }
+.utile { width: 40px; height: 40px; border-radius: 12px; background: #1f66ff; color: #fff; display: grid; place-items: center; font: 800 17px var(--font); flex: none; }
+.asst-h h2 { margin: 0; font: 700 16px/1.25 var(--font); }
+.asst-h small { display: block; color: var(--ink-3); font-size: 12.5px; }
+.live { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--green); white-space: nowrap; }
+.live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--green-dot); }
+.log { flex: 1; overflow-y: auto; padding: 18px 20px; display: grid; gap: 14px; align-content: start; }
+.msg { max-width: 100%; font-size: 13.5px; line-height: 1.55; }
+.msg.bot > div:last-of-type:not(.box) { background: var(--soft); padding: 12px 14px; border-radius: 4px 16px 16px 16px; }
+.msg.me { justify-self: end; width: fit-content; max-width: 85%; overflow-wrap: break-word; background: var(--blue); color: #fff; padding: 10px 14px; border-radius: 16px 16px 4px 16px; }
+.msg.bot .from { font-size: 12px; color: var(--ink-3); margin-bottom: 6px; font-weight: 600; }
+.msg p { margin: 0 0 8px; } .msg p:last-child { margin: 0; }
+.msg ul { margin: 4px 0 8px; padding-left: 18px; } .msg li { margin: 2px 0; }
+.msg code { font: 12px var(--mono); }
+.tag { font: 500 11px var(--mono); color: var(--blue-ink); background: var(--blue-tint); padding: 1px 5px; border-radius: 4px; }
+.typing { color: var(--ink-3); }
+.box { margin-top: 10px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--card); }
+.box h3 { margin: 0; font: 700 13.5px/1.3 var(--font); padding: 12px 14px; border-bottom: 1px solid var(--line); }
+.box dl { margin: 0; padding: 12px 14px; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 12px; font-size: 13px; }
+.box dt { color: var(--ink-3); } .box dd { margin: 0; white-space: pre-wrap; }
+.box details summary { cursor: pointer; padding: 10px 14px; font-size: 13px; font-weight: 600; color: var(--blue-ink); list-style: none; }
+.box details summary::-webkit-details-marker { display: none; }
+.box details[open] summary { border-bottom: 1px solid var(--line); }
+.box .bar2 { display: flex; gap: 8px; flex-wrap: wrap; padding: 12px 14px; border-top: 1px solid var(--line); background: var(--soft); }
+.box .btn { height: 34px; padding: 0 14px; font-size: 13px; }
+.box textarea { width: 100%; min-height: 120px; border: 1px solid var(--line-2); border-radius: 10px; padding: 10px; background: var(--card); }
+.box .guard { margin: 0 14px 12px; font-size: 12.5px; }
+.try { padding: 0 20px 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+.try button { border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 6px 12px; font-size: 12.5px; font-weight: 600; color: var(--ink-2); }
+.try button:hover { border-color: var(--blue); color: var(--blue-ink); }
+.composer { display: flex; gap: 8px; padding: 14px 20px 18px; border-top: 1px solid var(--line); }
+.composer input { flex: 1; min-width: 0; height: 44px; border-radius: 999px; border: 1px solid var(--line-2); background: var(--soft); padding: 0 18px; }
+.composer input:focus { outline: none; border-color: var(--blue); background: var(--card); }
+.composer .btn { height: 44px; width: 44px; padding: 0; }
+
+@media (max-width: 1180px) {
+  .shell { grid-template-columns: minmax(0, 1fr); }
+  .panel { position: static; height: 620px; min-height: 0; }
+  .search { max-width: 300px; }
+}
+@media (max-width: 860px) {
+  .search { display: none; }
+  .askb { display: grid; width: 38px; height: 38px; border-radius: 50%; border: 0; background: var(--nav-2); color: #fff; place-items: center; }
+  .duo, .how { grid-template-columns: minmax(0, 1fr); }
+  .hero-in { grid-template-columns: minmax(0, 1fr); }
+  .glass { display: none; }
+}
+@media (max-width: 640px) {
+  .wrap { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .top .wrap { gap: 10px; }
+  .logo .wm, .logo small, .roles button span { display: none; }
+  .logo b { display: grid; }
+  .right { gap: 8px; }
+  .roles button { padding: 7px 10px; }
+  .shell { padding-block: 16px 28px; }
+  .hero { padding: 24px 20px; border-radius: 20px; }
+  .hero h1 { font-size: 30px; }
+  .hero .sub { font-size: 14.5px; }
+  .kpis div { min-width: 0; flex: 1 1 120px; }
+  .kpis b { font-size: 22px; }
+  .card { padding: 20px 16px; border-radius: 18px; }
+  .tile { padding: 16px 16px 16px 20px; }
+  .tile .go { margin-left: 0; }
+  .steps { margin: 0 -8px; }
+  .steps li { grid-template-columns: 32px minmax(0, 1fr); gap: 12px; padding: 12px 8px; }
+  .num { width: 32px; height: 32px; }
+  .steps .end { grid-column: 2; justify-content: flex-start; }
+  .bar-row { grid-template-columns: minmax(96px, 120px) minmax(0, 1fr) 30px; gap: 10px; }
+  .panel { height: 560px; }
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M5 5h14v10H9l-4 4z"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4.5 4.5L19 7"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></symbol>
+  <symbol id="i-hash" viewBox="0 0 24 24"><path d="M5 9h14M5 15h14M10 4 8 20M16 4l-2 16"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="m3 9 9-4 9 4-9 4z"/><path d="M7 11v4c0 1.5 2.2 3 5 3s5-1.5 5-3v-4"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></symbol>
+  <symbol id="i-laptop" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="10" rx="1.5"/><path d="M3 19h18"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="TeamReady home"><b><svg viewBox="0 0 24 24"><path d="M4.5 12.5l4.5 4.5L19.5 6.5"/></svg></b><div><span class="wm"><span class="t">Team</span>Ready<svg viewBox="0 0 24 24"><path d="M3 13.5l5.5 5L21 5"/></svg></span><small>Lumen Labs</small></div></a>
+    <form class="search" id="search" role="search">
+      <svg class="i"><use href="#i-search"/></svg>
+      <input id="searchIn" placeholder="Search or ask TeamReady: &quot;do my checklist&quot;" aria-label="Search or ask TeamReady">
+    </form>
+    <div class="right">
+      <div class="roles" role="group" aria-label="View as">
+        <button id="rHire" aria-pressed="true">Maya<span> · new hire</span></button>
+        <button id="rMgr" aria-pressed="false">Jordan<span> · manager</span></button>
+        <button id="rOps" aria-pressed="false">Elena<span> · People Ops</span></button>
+      </div>
+      <button class="askb" id="askBtn" aria-label="Ask TeamReady"><svg class="i"><use href="#i-chat"/></svg></button>
+      <button class="mebtn" id="inboxBtn" aria-label="Your inbox"><span id="avatar">MC</span><span class="count" id="badge" hidden>0</span></button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap shell" id="layout">
+  <div class="main">
+    <section class="hero" aria-labelledby="hello">
+      <div class="hero-in">
+        <div>
+          <p class="eyebrow" id="heroDay"></p>
+          <h1 id="hello">Welcome, Maya</h1>
+          <p class="sub" id="heroSub">Data Analyst · Growth Insights · US office</p>
+          <div class="meter" data-hero="hire">
+            <div class="lbl"><span>Onboarding journey</span><span id="meterTxt">0 of 6 done</span></div>
+            <div class="tr"><div class="fl" id="meterFill"></div></div>
+          </div>
+        </div>
+        <div class="glass" data-hero="hire"><dl id="profile"></dl><p id="profSrc"></p></div>
+      </div>
+      <div class="kpis" id="bandKpis" hidden></div>
+    </section>
+
+    <div class="stack" data-role="hire">
+      <section class="card">
+        <div class="card-h"><h2>Awaiting Your Action</h2><span class="meta">TeamReady never acts until you approve</span></div>
+        <ul class="tiles" id="hireInbox"></ul>
+      </section>
+      <section class="card">
+        <div class="card-h"><h2>Onboarding Journey</h2><div class="end"><button class="btn tint" id="autoBtn">Do my checklist</button></div></div>
+        <ul class="steps" id="journey"></ul>
+      </section>
+      <div class="duo">
+        <section class="card">
+          <div class="card-h"><h2>Done for You</h2><span class="meta">Business process history</span></div>
+          <ul class="rows" id="history"><li class="plain"><div class="empty-box"><b>Nothing yet</b>Tasks TeamReady completes after your approval show up here.</div></li></ul>
+        </section>
+        <section class="card">
+          <div class="card-h"><h2>Waiting on Others</h2></div>
+          <ul class="rows" id="waiting"><li class="plain"><div class="empty-box"><b>Nothing pending</b>Anything TeamReady sends for you is tracked here.</div></li></ul>
+        </section>
+      </div>
+      <section class="card">
+        <div class="card-h"><h2>Ask TeamReady To</h2><span class="meta">It shows you exactly what it will do first</span></div>
+        <ul class="acts" id="apps">
+          <li><button data-q="Can you join the Slack channels for me?"><span class="ai"><svg class="i"><use href="#i-hash"/></svg></span>Join my team's Slack channels</button></li>
+          <li><button data-q="Sign me up for security awareness training"><span class="ai"><svg class="i"><use href="#i-cap"/></svg></span>Enroll me in required training</button></li>
+          <li><button data-q="Can you schedule my 1:1 with my manager?"><span class="ai"><svg class="i"><use href="#i-cal"/></svg></span>Book my first 1:1</button></li>
+          <li><button data-q="I need access to the analytics dashboard"><span class="ai"><svg class="i"><use href="#i-lock"/></svg></span>Request dashboard access</button></li>
+          <li><button data-q="My laptop screen is cracked"><span class="ai"><svg class="i"><use href="#i-laptop"/></svg></span>Report a laptop problem</button></li>
+        </ul>
+      </section>
+      <section class="card">
+        <div class="card-h"><h2>Grow at Lumen Labs</h2><span class="meta">Skills and growth, answered from approved docs</span></div>
+        <ul class="acts" id="grow">
+          <li><button data-q="How do I use my learning and development budget?"><span class="ai"><svg class="i"><use href="#i-cap"/></svg></span>Use my learning budget</button></li>
+          <li><button data-q="How do I get a mentor?"><span class="ai"><svg class="i"><use href="#i-chat"/></svg></span>Find a mentor</button></li>
+          <li><button data-q="How does internal mobility work?"><span class="ai"><svg class="i"><use href="#i-send"/></svg></span>Explore internal moves</button></li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="stack" data-role="mgr" hidden>
+      <section class="card">
+        <div class="card-h"><h2>Awaiting Your Approval</h2><div class="end"><span class="meta">Only you can approve access for your team</span><button class="btn sm" id="mgrLock" hidden>Lock</button></div></div>
+        <ul class="tiles" id="mgrInbox"></ul>
+        <div class="inline-key" id="mgrKeyRow" hidden><input id="mgrKey" type="password" placeholder="Manager key" aria-label="Manager key"><button class="btn primary" id="mgrKeyGo">Unlock</button></div>
+      </section>
+      <div class="duo">
+        <section class="card">
+          <div class="card-h"><h2>Recently Decided</h2></div>
+          <ul class="rows" id="mgrHistory"></ul>
+        </section>
+        <section class="card">
+          <div class="card-h"><h2>Your Team</h2></div>
+          <ul class="rows" id="team"></ul>
+        </section>
+      </div>
+    </div>
+
+    <div class="stack" data-role="ops" hidden>
+      <section class="card">
+        <div class="card-h"><h2>Where New Hires Get Stuck</h2><span class="meta" id="fmSub">Last 30 days</span></div>
+        <div class="bars" id="fmBars"></div>
+        <p class="caption">Anonymous: topics and doc paths only, groups of 5 or more. Orange marks a gap with a fixable doc.</p>
+      </section>
+      <div class="duo">
+        <section class="card">
+          <div class="card-h"><h2>Canary New Hires</h2><div class="end"><a class="btn sm" href="/canary">Walkthrough</a><button class="btn sm primary" id="canaryRun">Run now</button></div></div>
+          <p class="muted" id="canarySub" style="margin-bottom:8px;font-size:13.5px">Synthetic new hires walk the docs before real people start.</p>
+          <ul class="rows" id="walls"></ul>
+        </section>
+        <section class="card">
+          <div class="card-h"><h2>Doc Fixes to Review</h2><span class="meta">Drafted by the CREAO Doc Steward</span></div>
+          <ul class="rows" id="fixes"><li class="plain"><div class="empty-box"><b>No fixes yet</b>Run the canaries to draft fixes. Each one quotes the doc word for word.</div></li></ul>
+        </section>
+      </div>
+    </div>
+
+    <section class="card">
+      <div class="card-h"><h2>How TeamReady Works</h2><a class="meta" href="/activity" target="_blank" rel="noopener">View live agent activity →</a></div>
+      <dl class="how">
+        <div><dt>What it's doing</dt><dd>Every step by every agent is logged live on Agent Activity, including what each check stopped.</dd></div>
+        <div><dt>Why it says what it says</dt><dd>Each statement quotes an approved doc word for word, with the doc's date and owner. Anything it can't quote is removed.</dd></div>
+        <div><dt>What data it uses</dt><dd>Your name, role, team and office, and your question. Never private messages, reviews or pay.</dd></div>
+        <div><dt>Before it acts</dt><dd>It shows the system, the exact fields and the source doc. Nothing happens until you approve.</dd></div>
+        <div><dt>Where people decide</dt><dd>You approve, edit or reject every message and task. Access also needs your manager.</dd></div>
+        <div><dt>What it won't do</dt><dd>Touch passwords or MFA, approve its own requests, or decide pay, performance, benefits or anyone's job.</dd></div>
+        <div><dt>When a person steps in</dt><dd>Questions about pay, performance or HR stop before any search, and it names who to talk to.</dd></div>
+        <div><dt>When it isn't sure</dt><dd>Under 60/100 confidence, or when docs disagree, it doesn't guess. It finds who to ask and drafts the message.</dd></div>
+        <div><dt>How to correct it</dt><dd>Say "this looks wrong" to ask the doc's owner, or "wrong person" and routing learns.</dd></div>
+      </dl>
+    </section>
+    <p class="legal">Prototype for the Workday "Build the Future of Work with AI" challenge. Lumen Labs and its people are fictional. Not a Workday product.</p>
+  </div>
+
+  <aside class="panel card" id="panel" aria-label="TeamReady Assistant">
+    <div class="asst-h"><span class="utile"><svg viewBox="0 0 24 24" style="width:22px;height:22px;fill:none;stroke:#fff;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round"><path d="M4.5 12.5l4.5 4.5L19.5 6.5"/></svg></span><div><h2>TeamReady Assistant</h2><small>Answers from approved docs · acts only with your OK</small></div><span class="live">7 agents</span></div>
+    <div class="log" id="log" aria-live="polite"></div>
+    <div class="try" id="chips"><button>Do my checklist</button><button>How do I deploy to staging?</button><button>How many vacation days do I get?</button></div>
+    <form class="composer" id="composer"><input id="q" autocomplete="off" placeholder="Ask a question or describe a task" aria-label="Message TeamReady"><button class="btn primary" type="submit" aria-label="Send"><svg class="i"><use href="#i-send"/></svg></button></form>
+  </aside>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const h = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+  const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const icon = name => `<svg class="i"><use href="#i-${name}"/></svg>`;
+  const store = {
+    get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} },
+  };
+  let session = store.get("ub.session", null), after = store.get("ub.wd.after", 0), role = store.get("ub.wd.role", "hire");
+  let mgrKey = ""; try { sessionStorage.removeItem("ub.mkey"); } catch (e) {}  // kept in memory only: a reload locks it again
+  let last = null, busy = false;
+  const ago = t => { if (!t) return ""; const s = Math.max(0, Date.now() / 1000 - t); return s < 60 ? "just now" : s < 3600 ? `${Math.round(s / 60)} min ago` : `${Math.round(s / 3600)} h ago`; };
+  const cap = s => String(s || "").replace(/^./, c => c.toUpperCase());
+  const day = iso => new Date(iso + "T12:00:00");
+  const plus = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
+  const fmtDay = d => d.toLocaleDateString([], { month: "short", day: "numeric" });
+  const longDay = d => d.toLocaleDateString([], { weekday: "long", month: "short", day: "numeric" });
+  const andList = xs => xs.length < 2 ? xs.join("") : xs.length === 2 ? xs.join(" and ") : xs.slice(0, -1).join(", ") + ", and " + xs[xs.length - 1];
+  const todayStr = () => longDay(last && last.profile.today ? day(last.profile.today) : new Date());
+
+  function setPanel(open) {
+    if (open && innerWidth <= 1180) $("panel").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  $("askBtn").onclick = () => { setPanel(true); $("q").focus({ preventScroll: true }); };
+
+  function md(text) {
+    const lines = esc(text).split("\n"); let out = "", inList = false;
+    for (const raw of lines) {
+      const line = raw.replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/`([^`]+)`/g, "<code>$1</code>").replace(/\[(D\d{2})\]/g, '<span class="tag">$1</span>');
+      if (/^\s*[-•]\s+/.test(line)) { if (!inList) { out += "<ul>"; inList = true; } out += "<li>" + line.replace(/^\s*[-•]\s+/, "") + "</li>"; continue; }
+      if (inList) { out += "</ul>"; inList = false; }
+      if (line.trim()) out += "<p>" + line + "</p>";
+    }
+    return out + (inList ? "</ul>" : "");
+  }
+  const log = $("log");
+  function bubble(who, html, extra) {
+    const m = h("div", "msg " + who);
+    if (who === "bot") m.appendChild(h("div", "from", "TeamReady"));
+    const b = h("div"); if (html) b.innerHTML = html; m.appendChild(b);
+    if (extra) m.appendChild(extra);
+    log.appendChild(m); log.scrollTop = log.scrollHeight; return m;
+  }
+  function disable(el) { el.querySelectorAll("button, textarea").forEach(x => x.disabled = true); }
+  function cardEl(payload, kind, live) {
+    const c = h("div", "box"); c.appendChild(h("h3", "", payload.title || ""));
+    if (payload.summary_rows && payload.summary_rows.length) {
+      const d = h("details"); if (payload.approve_cta) d.open = true;
+      d.appendChild(h("summary", "", kind === "detail" ? "Sources and confidence" : "Details"));
+      const dl = h("dl"); for (const r of payload.summary_rows) dl.append(h("dt", "", r.label), h("dd", "", r.value)); d.appendChild(dl); c.appendChild(d);
+    }
+    const ctas = [payload.approve_cta, ...(payload.ctas || []), payload.reject_cta].filter(x => x && x.selection);
+    if (ctas.length && live) {
+      const a = h("div", "bar2");
+      for (const x of ctas) { const b = h("button", "btn" + (x.primary ? " primary" : ""), x.label); b.onclick = () => { disable(c); send("", x.selection, x.label); }; a.appendChild(b); }
+      c.appendChild(a);
+    }
+    return c;
+  }
+  function draftEl(d, live) {
+    const c = h("div", "box");
+    const label = { message_helper: "Message", book_1_1: "1:1 invite", access_request: "Request to your manager", doc_owner_note: "Note to the doc owner" }[d.type] || "Message";
+    c.appendChild(h("h3", "", "Review before sending · " + label));
+    const dl = h("dl"); dl.append(h("dt", "", "To"), h("dd", "", d.to_name + (d.to_role ? ", " + d.to_role : "")), h("dt", "", "Subject"), h("dd", "", d.subject));
+    const body = h("dd", "", d.body); dl.append(h("dt", "", "Message"), body); c.appendChild(dl);
+    const bad = d.guardian && d.guardian.length;
+    c.appendChild(h("div", "guard" + (bad ? " bad" : ""), bad ? "Blocked: " + d.guardian.join("; ") + ". Edit it to remove that." : "Guardian checked: no passwords, IDs, pay, performance or health details."));
+    if (live) {
+      const a = h("div", "bar2");
+      const ok = h("button", "btn primary", "Approve and send"); ok.disabled = !!bad;
+      const ed = h("button", "btn", "Edit"), no = h("button", "btn danger", "Reject");
+      ok.onclick = () => { disable(c); send("", { action: "ub_approve" }, "Approve"); };
+      no.onclick = () => { disable(c); send("", { action: "ub_reject" }, "Reject"); };
+      ed.onclick = () => {
+        const ta = h("textarea"); ta.value = d.body; body.replaceWith(ta); ta.focus(); ok.disabled = true; ed.textContent = "Save";
+        ed.onclick = () => { const v = ta.value.trim(); if (v) { disable(c); send("edit: " + v, null, "Edited the message"); } };
+      };
+      a.append(ok, ed, no);
+      if (d.type === "message_helper") { const wp = h("button", "btn", "Wrong person"); wp.onclick = () => { disable(c); send("", { action: "ub_wrong_person" }, "Wrong person"); }; a.append(wp); }
+      c.appendChild(a);
+    }
+    return c;
+  }
+  function renderBot(r) {
+    let text = r.text || "";
+    if (r.draft) { const cut = text.search(/\n\s*I drafted this /); if (cut > 0) text = text.slice(0, cut); text = text.replace(/\*\*Guardian stopped this draft:\*\*[^\n]*\n?/, ""); }
+    text = text.replace(/\n*Reply \*\*approve\*\*[^\n]*$/, "").replace(/\n*Nothing happens until you reply \*\*approve\*\* \(or \*\*reject\*\*\)\.?/, "").replace(/\n*_Mode: extractive[^\n]*_/, "");
+    const extra = r.draft ? draftEl(r.draft, true) : r.payload ? cardEl(r.payload, r.kind, true) : null;
+    bubble("bot", md(text), extra);
+  }
+  async function ensureSession() {
+    if (session) return session;
+    const r = await fetch("/api/portal/session"); session = (await r.json()).session; store.set("ub.session", session); return session;
+  }
+  async function send(text, selection, shown) {
+    if (busy) return; busy = true;
+    if (role !== "hire") setRole("hire");
+    setPanel(true);
+    bubble("me", esc(shown || text));
+    const t = bubble("bot", '<span class="typing">Checking the docs…</span>');
+    try {
+      await ensureSession();
+      const res = await fetch("/api/portal/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ session, text, selection }) });
+      t.remove();
+      if (!res.ok) { const e = await res.json().catch(() => ({})); bubble("bot", md(e.detail || "Something went wrong. Nothing was sent.")); }
+      else renderBot(await res.json());
+    } catch (e) { t.remove(); bubble("bot", md("TeamReady isn't reachable right now. Nothing was sent.")); }
+    busy = false; poll();
+  }
+  async function remind(itemId, doSend) {
+    setPanel(true);
+    const res = await fetch("/api/portal/remind", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ session, item_id: itemId, send: doSend }) });
+    const r = await res.json();
+    if (!r.draft) { bubble("bot", md(r.text)); poll(); return; }
+    const c = h("div", "box"); c.appendChild(h("h3", "", "Review before sending · Reminder"));
+    const dl = h("dl"); dl.append(h("dt", "", "To"), h("dd", "", r.draft.to_name), h("dt", "", "Subject"), h("dd", "", r.draft.subject), h("dt", "", "Message"), h("dd", "", r.draft.body)); c.appendChild(dl);
+    const bad = r.draft.guardian && r.draft.guardian.length;
+    c.appendChild(h("div", "guard" + (bad ? " bad" : ""), bad ? "Blocked: " + r.draft.guardian.join("; ") : "Guardian checked: nothing sensitive."));
+    const a = h("div", "bar2"); const ok = h("button", "btn primary", "Approve and send"); ok.disabled = !!bad; const no = h("button", "btn", "Not now");
+    ok.onclick = () => { disable(c); bubble("me", "Approve"); remind(itemId, true); }; no.onclick = () => disable(c);
+    a.append(ok, no); c.appendChild(a); bubble("bot", md(r.text), c);
+  }
+  $("composer").onsubmit = e => { e.preventDefault(); const v = $("q").value.trim(); if (v) { $("q").value = ""; send(v); } };
+  $("search").onsubmit = e => { e.preventDefault(); const v = $("searchIn").value.trim(); if (v) { $("searchIn").value = ""; send(v); } };
+  $("chips").onclick = e => { if (e.target.tagName === "BUTTON") send(e.target.textContent); };
+  $("apps").onclick = e => { const b = e.target.closest("button"); if (b) send(b.dataset.q, null, b.dataset.q); };
+  $("grow").onclick = e => { const b = e.target.closest("button"); if (b) send(b.dataset.q, null, b.dataset.q); };
+  $("autoBtn").onclick = () => send("Do my checklist");
+
+  function btn(label, cls, fn) { const b = h("button", "btn" + (cls ? " " + cls : ""), label); b.onclick = fn; return b; }
+  function tile({ eyebrow, title, sub, guard, bad, calm, buttons, detail }) {
+    const li = h("li", "tile" + (calm ? " calm" : ""));
+    li.append(h("div", "ey", eyebrow), h("h3", "", title));
+    if (sub) li.appendChild(h("p", "sub", sub));
+    const foot = h("div", "foot");
+    if (guard) foot.appendChild(h("span", "guard" + (bad ? " bad" : ""), guard));
+    const go = h("div", "go"); for (const b of buttons || []) go.appendChild(b); foot.appendChild(go);
+    li.appendChild(foot); if (detail) li.appendChild(detail); return li;
+  }
+  function emptyBox(title, text) { const li = h("li", "plain"); const d = h("div", "empty-box"); d.append(h("b", "", title), document.createTextNode(text)); li.appendChild(d); return li; }
+  function row(ic, icCls, title, right, sub, code) {
+    const li = h("li"); const i = h("span", "ic" + (icCls ? " " + icCls : "")); i.innerHTML = icon(ic); li.appendChild(i);
+    li.appendChild(h("b", "", title)); const r = h("div", "r"); for (const x of right) r.appendChild(x); li.appendChild(r);
+    if (sub) li.appendChild(h("small", "", sub)); if (code) li.appendChild(h("code", "", code)); return li;
+  }
+  const pill = (cls, text) => h("span", "pill " + cls, text);
+
+  const SHORT = [[/training/i, "Training"], [/slack/i, "Slack channels"], [/analytics/i, "analytics request"], [/1:1/, "your first 1:1"], [/laptop/i, "laptop setup"], [/multi-factor/i, "MFA"]];
+  const short = step => (SHORT.find(([re]) => re.test(step)) || [0, step.replace(/\.$/, "")])[1];
+  function stepSub(step, p) {
+    const start = p.start_date ? day(p.start_date) : null;
+    if (/laptop/i.test(step)) return "With IT, in person, on your first day";
+    if (/multi-factor/i.test(step)) return "Only you can do this · TeamReady never touches passwords or MFA";
+    if (/training/i.test(step)) return "Within 14 days of start" + (start ? ` · due ${fmtDay(plus(start, 14))}` : "");
+    if (/slack/i.test(step)) {
+      const ch = ["#announcements", "#ask-people-ops", "#" + (p.team || "team").toLowerCase().replace(/[^a-z0-9]+/g, "-")];
+      if (/analyst|data/i.test(p.role)) ch.push("#data-help");
+      if (/engineer|developer/i.test(p.role)) ch.push("#platform-help", "#deploys");
+      return ch.join(", ");
+    }
+    if (/analytics/i.test(step)) return "Needs manager sign-off";
+    if (/1:1/.test(step)) return `With ${p.manager || "your manager"} in your first week`;
+    return "";
+  }
+
+  function renderHire(s) {
+    last = s;
+    const p = s.profile, first = p.name.split(" ")[0];
+    const n = p.start_date && p.today ? Math.max(1, Math.round((day(p.today) - day(p.start_date)) / 864e5) + 1) : null;
+    $("heroDay").textContent = (n ? `Day ${n} · ` : "") + todayStr();
+    $("hello").textContent = `Welcome, ${first}`;
+    $("heroSub").textContent = [p.role, p.team, p.office ? p.office + " office" : ""].filter(Boolean).join(" · ");
+    const done = s.checklist_done || [], waiting = s.checklist_waiting || [], doable = s.checklist_doable || [];
+    $("meterTxt").textContent = `${done.length} of ${s.checklist.length} done`;
+    $("meterFill").style.width = (100 * done.length / Math.max(1, s.checklist.length)) + "%";
+
+    const inbox = $("hireInbox"); inbox.replaceChildren(); let count = 0;
+    if (s.awaiting_you) {
+      const a = s.awaiting_you; count++;
+      const eyebrow = { system_action: "A task TeamReady can do", system_batch: "Onboarding steps TeamReady can do", access_request: "Request to your manager",
+                        message_helper: "Message ready to send", book_1_1: "1:1 invite", doc_owner_note: "Note to a doc owner", workday_action: "Workday task" }[a.type] || "Ready for review";
+      const isMsg = ["access_request", "message_helper", "book_1_1", "doc_owner_note"].includes(a.type);
+      const ok = btn(isMsg ? "Approve and send" : "Approve and do it", "primary", () => send("", { action: "ub_approve" }, "Approve")); ok.disabled = a.blocked;
+      const steps = doable.filter(i => !waiting.includes(i)).map(i => short(s.checklist[i]));
+      const title = a.type === "system_batch" && steps.length ? cap(andList(steps)) : (a.title || "Review in the assistant") + (isMsg && a.to ? ` → ${a.to}` : "");
+      inbox.appendChild(tile({ eyebrow, title,
+        guard: a.blocked ? "Guardian found a sensitive detail. Edit it in the assistant first." : "Guardian checked: no passwords, IDs, pay or health details",
+        bad: a.blocked, buttons: [btn("Review", "link", () => setPanel(true)), btn("Reject", "", () => send("", { action: "ub_reject" }, "Reject")), ok] }));
+    }
+    for (const f of s.followups.filter(f => f.nudged && f.status === "waiting")) {
+      count++;
+      inbox.appendChild(tile({ eyebrow: "No reply yet", title: `${cap(f.kind.replace(/^your /, ""))} to ${f.to}`, sub: `Sent ${f.age} ago`, calm: true,
+        buttons: [btn("Send a reminder", "", () => remind(f.id, false))] }));
+    }
+    const open = doable.filter(i => !waiting.includes(i));
+    if (open.length && !s.awaiting_you) {
+      count++;
+      inbox.appendChild(tile({ eyebrow: "Onboarding steps TeamReady can do", title: cap(andList(open.map(i => short(s.checklist[i])))),
+        sub: "You'll see each system and the exact fields before anything runs.",
+        guard: "Guardian checks every step before it runs", buttons: [btn("Review the plan", "primary", () => send("Do my checklist"))] }));
+    }
+    if (!inbox.children.length) inbox.appendChild(emptyBox("You're all caught up", "Nothing needs your approval right now."));
+    const badge = $("badge"); badge.hidden = !count; badge.textContent = count;
+
+    $("journey").replaceChildren(...s.checklist.map((step, i) => {
+      const st = done.includes(i) ? "done" : waiting.includes(i) ? "wait" : doable.includes(i) ? "todo" : "you";
+      const li = h("li", st === "done" ? "isdone" : "");
+      const num = h("span", "num " + { done: "ok", wait: "wait", todo: "todo", you: "" }[st]);
+      if (st === "done") num.innerHTML = icon("check"); else if (st === "wait") num.innerHTML = icon("clock"); else num.textContent = i + 1;
+      const tx = h("div", "txt"); tx.append(h("b", "", step.replace(/\.$/, "")), h("small", "", st === "wait" ? `Waiting for ${p.manager || "your manager"} to approve` : stepSub(step, p)));
+      const end = h("div", "end");
+      if (st === "you") end.appendChild(btn("How to", "link", () => send("How do I " + step.charAt(0).toLowerCase() + step.slice(1).replace(/\.$/, "") + "?")));
+      end.appendChild({ done: pill("green", "Done by TeamReady"), wait: pill("amber", `Waiting on ${(p.manager || "manager").split(" ")[0]}`),
+                        todo: pill("blue", "TeamReady can do this"), you: pill("", "Yours") }[st]);
+      li.append(num, tx, end); return li;
+    }));
+
+    if ((s.done_for_you || []).length) $("history").replaceChildren(...s.done_for_you.map(r => {
+      const ok = r.status === "done";
+      return row(ok ? "check" : "clock", ok ? "" : "amber", r.title,
+        [pill(ok ? "green" : "amber", { done: "Complete", processing: "In progress", open: "Open", submitted: "Submitted" }[r.status] || r.status)], r.detail, `${r.id} · ${r.system}`);
+    }));
+
+    const items = [];
+    for (const r of s.requests) items.push([cap(r.category) + " request", `${r.request_id} · with your manager`,
+      r.status === "pending" ? ["amber", "Pending"] : r.status === "approved" ? ["green", "Approved"] : ["red", "Denied"]]);
+    for (const f of s.followups) if (!f.id.startsWith("AR-")) items.push([`${cap(f.kind.replace(/^your /, ""))} to ${f.to}`, `"${f.summary}" · ${f.age} ago`,
+      f.status === "waiting" ? ["amber", f.nudged ? "Reminder offered" : "Waiting"] : ["green", "Answered"]]);
+    if (items.length) $("waiting").replaceChildren(...items.map(([t, sub, [cls, label]]) =>
+      row(cls === "green" ? "check" : cls === "red" ? "x" : "clock", cls === "green" ? "" : cls, t, [pill(cls, label)], sub)));
+
+    $("avatar").textContent = p.name.split(" ").map(x => x[0]).join("").slice(0, 2);
+    $("profile").replaceChildren(...[["Manager", p.manager], ["Started", p.start_date ? day(p.start_date).toLocaleDateString([], { month: "long", day: "numeric" }) : ""],
+      ["Training due", p.start_date ? fmtDay(plus(day(p.start_date), 14)) : ""], ["Day 30 check-in", p.start_date ? fmtDay(plus(day(p.start_date), 29)) : ""]]
+      .filter(([, v]) => v).flatMap(([k, v]) => [h("dt", "", k), h("dd", "", v)]));
+    $("profSrc").textContent = p.source === "Workday" ? "Profile from Workday" : "Profile: synthetic sample data (Lumen Labs is fictional)";
+
+    for (const m of s.inbox || []) {
+      after = Math.max(after, m.id);
+      bubble("bot", md((m.from === "manager" ? "**Update from your manager's approval:** " : m.from === "tracker" ? "**Follow-up:** " : "") + m.text));
+    }
+    s.inbox = []; store.set("ub.wd.after", after);
+  }
+
+  function setBandKpis(rows) {
+    $("bandKpis").replaceChildren(...rows.map(([v, l]) => { const d = h("div"); d.append(h("b", "", v), h("span", "", l)); return d; }));
+  }
+  async function renderMgr() {
+    let res;
+    try { res = await fetch("/api/portal/manager", { headers: { "X-Manager-Key": mgrKey } }); } catch (e) { return; }
+    $("mgrKeyRow").hidden = res.status !== 403; $("mgrLock").hidden = res.status === 403;
+    const inbox = $("mgrInbox"); inbox.replaceChildren();
+    if (res.status === 403) { inbox.appendChild(emptyBox("Locked", "Enter the manager key to see your team's requests.")); setBandKpis([]); $("mgrHistory").replaceChildren(emptyBox("Locked", "Unlock to see what you decided.")); $("team").replaceChildren(emptyBox("Locked", "Unlock to see your team's onboarding.")); return; }
+    const list = await res.json();
+    const pending = list.filter(r => r.status === "pending"), decided = list.filter(r => r.status !== "pending");
+    $("badge").hidden = !pending.length; $("badge").textContent = pending.length;
+    setBandKpis([[pending.length, "Waiting for you"], [decided.filter(r => r.status === "approved").length, "Approved"],
+                 [last ? `${(last.checklist_done || []).length} of ${last.checklist.length}` : "–", "Maya's onboarding"]]);
+    if (!pending.length) inbox.appendChild(emptyBox("You're all caught up", "Nothing from your team is waiting for you."));
+    for (const r of pending) {
+      const detail = h("div", "detail"); detail.hidden = true;
+      detail.appendChild(h("p", "", r.body || ""));
+      if ((r.evidence || []).length) { detail.appendChild(h("small", "", "From the approved docs:")); const ul = h("ul"); for (const e of r.evidence) ul.appendChild(h("li", "", e)); detail.appendChild(ul); }
+      const note = h("input"); note.placeholder = "Comment (optional)"; note.setAttribute("aria-label", "Comment"); detail.appendChild(note);
+      const acts = [btn("Details", "link", () => { detail.hidden = !detail.hidden; })];
+      for (const [label, decision, cls] of [["Deny", "rejected", "danger"], ["Approve", "approved", "primary"]]) {
+        acts.push(btn(label, cls, async ev => {
+          ev.target.closest(".go").querySelectorAll("button").forEach(x => x.disabled = true);
+          await fetch("/api/portal/decide", { method: "POST", headers: { "Content-Type": "application/json", "X-Manager-Key": mgrKey },
+            body: JSON.stringify({ request_id: r.request_id, decision, note: note.value.trim() }) });
+          renderMgr();
+        }));
+      }
+      inbox.appendChild(tile({ eyebrow: `${r.category} · ${r.request_id}`, title: `${cap(r.category)} for ${r.requester ? r.requester.name : "a new hire"}`,
+        sub: `Received ${ago(r.created)}. TeamReady files the form only after you approve.`, guard: "Guardian checked the request", buttons: acts, detail }));
+    }
+    $("mgrHistory").replaceChildren(...(decided.length ? decided.slice(0, 6).map(r => {
+      const ok = r.status === "approved";
+      return row(ok ? "check" : "x", ok ? "" : "red", `${cap(r.category)} · ${r.requester ? r.requester.name : ""}`, [pill(ok ? "green" : "red", ok ? "Approved" : "Denied")],
+        r.request_id + (ok && /analytics/.test(r.category) ? " · form filed by TeamReady after your approval" : ""));
+    }) : [emptyBox("No decisions yet", "Requests you approve or deny appear here.")]));
+    if (last) {
+      const done = (last.checklist_done || []).length;
+      $("team").replaceChildren(row("check", done === last.checklist.length ? "" : "blue", last.profile.name,
+        [pill(done === last.checklist.length ? "green" : "blue", `${done} of ${last.checklist.length}`)], `${last.profile.role} · ${(last.done_for_you || []).length} tasks done by TeamReady`));
+    }
+  }
+  $("mgrKeyGo").onclick = () => { mgrKey = $("mgrKey").value; $("mgrKey").value = ""; renderMgr(); };
+  $("mgrKey").onkeydown = e => { if (e.key === "Enter") $("mgrKeyGo").click(); };
+  $("mgrLock").onclick = () => { mgrKey = ""; renderMgr(); };
+
+  async function renderOps() {
+    try {
+      const fm = await (await fetch("/api/friction")).json();
+      $("fmSub").textContent = `Last ${fm.window_days} days · ${/Tiger/.test(fm.storage) && !/not reachable|unreachable/.test(fm.storage) ? "Tiger Data" : "local data"}`;
+      setBandKpis([[fm.total_blockers, "Blockers in 30 days"], [Math.round(fm.resolved_without_ticket_share * 100) + "%", "Solved without a ticket"], [fm.process_gaps, "Process gaps found"]]);
+      const max = Math.max(1, ...fm.clusters.map(c => c.count));
+      $("fmBars").replaceChildren(...fm.clusters.slice(0, 7).map(c => {
+        const r = h("div", "bar-row"); r.title = c.pattern || "";
+        const tr = h("div", "tr"); const f = h("div", "fl" + (c.fixable ? " gap" : "")); f.style.width = (100 * c.count / max) + "%"; tr.appendChild(f);
+        r.append(h("span", "", cap(c.topic)), tr, h("span", "", c.count)); return r;
+      }));
+      const run = await (await fetch("/api/canary/latest")).json();
+      if (run.status === "none") { $("canarySub").textContent = "No run yet. Synthetic new hires walk the docs before real people start."; return; }
+      const sm = run.summary || {};
+      $("canarySub").textContent = run.status === "running" ? "Running now…"
+        : `Last run ${run.run_id}: ${sm.walls} findings from 3 synthetic new hires · about ${(sm.minutes_saved_per_cohort / 60).toFixed(1)} hours saved per 3-person cohort.`;
+      $("walls").replaceChildren(...(run.walls || []).map(w =>
+        row("file", w.predicted ? "amber" : "blue", w.headline, [pill(w.predicted ? "amber" : "blue", w.predicted ? "Not reported yet" : `${w.humans_hit} reported`)],
+          `${w.label} · found by ${w.canaries.join(", ")}`)));
+      if ((run.fixes || []).length) $("fixes").replaceChildren(...run.fixes.map(f => {
+        const right = [pill(f.status === "sent" ? "green" : f.status === "ready" ? "blue" : "amber", { sent: "Sent", ready: "Ready", drafting: "Drafting", blocked: "Blocked" }[f.status] || f.status)];
+        if (f.status === "ready") right.push(btn("Send", "sm primary", async ev => {
+          ev.target.disabled = true;
+          const r = await fetch("/api/canary/approve", { method: "POST", headers: { "Content-Type": "application/json", "X-Manager-Key": mgrKey }, body: JSON.stringify({ run_id: run.run_id, fix_id: f.id }) });
+          if (r.status === 403) { $("canarySub").textContent = "Enter the manager key in Jordan's view first, then send fixes."; ev.target.disabled = false; return; }
+          renderOps();
+        }));
+        const li = row(f.status === "sent" ? "check" : "file", f.status === "sent" ? "" : "blue",
+          `${{ edit: "Edit", archive: "Archive note", write: "Writing request" }[f.kind]}${f.doc_title ? " · " + f.doc_title : ""} → ${f.to.name}`, right, f.after || "");
+        const by = h("small", "", `Drafted by ${f.drafter || "TeamReady"}`);
+        if (f.run_url) { const a = h("a", "", " · open the CREAO run ↗"); a.href = f.run_url; a.target = "_blank"; a.rel = "noopener"; by.appendChild(a); }
+        li.appendChild(by); return li;
+      }));
+      if (run.status === "running") setTimeout(renderOps, 1500);
+    } catch (e) {}
+  }
+  $("canaryRun").onclick = async () => {
+    $("canaryRun").disabled = true;
+    const r = await fetch("/api/canary/run", { method: "POST" });
+    if (!r.ok) { const e = await r.json().catch(() => ({})); $("canarySub").textContent = e.detail || "Couldn't start a run."; }
+    $("canaryRun").disabled = false; renderOps();
+  };
+
+  const ROLES = { hire: ["rHire", "MC"], mgr: ["rMgr", "JL"], ops: ["rOps", "EG"] };
+  function setRole(r) {
+    role = r; store.set("ub.wd.role", r);
+    for (const [k, [id]] of Object.entries(ROLES)) $(id).setAttribute("aria-pressed", String(k === r));
+    document.querySelectorAll("[data-role]").forEach(el => el.hidden = el.dataset.role !== r);
+    document.querySelectorAll("[data-hero]").forEach(el => el.hidden = el.dataset.hero !== r);
+    $("bandKpis").hidden = r === "hire";
+    $("panel").hidden = r !== "hire"; $("layout").classList.toggle("solo", r !== "hire");
+    $("avatar").textContent = ROLES[r][1]; $("badge").hidden = true;
+    if (r !== "hire") $("heroDay").textContent = todayStr();
+    if (r === "mgr") { $("hello").textContent = "Welcome, Jordan"; $("heroSub").textContent = "Analytics Manager · Growth Insights · US office"; renderMgr(); }
+    if (r === "ops") { $("hello").textContent = "Welcome, Elena"; $("heroSub").textContent = "People Operations Partner · onboarding across Lumen Labs"; renderOps(); }
+    if (r === "hire") { if (last) renderHire(last); poll(); }
+  }
+  $("rHire").onclick = () => setRole("hire"); $("rMgr").onclick = () => setRole("mgr"); $("rOps").onclick = () => setRole("ops");
+  $("inboxBtn").onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
+  async function poll() {
+    if (!session) await ensureSession();
+    try {
+      const r = await fetch(`/api/portal/state?session=${encodeURIComponent(session)}&after=${after}`);
+      if (r.ok) { const s = await r.json(); if (role === "hire") renderHire(s); else last = s; }
+    } catch (e) {}
+  }
+
+  bubble("bot", md("Hi, I'm TeamReady. I answer from Lumen Labs' approved docs and show where each answer comes from. I can also finish onboarding tasks for you, like joining your Slack channels or booking your first 1:1. I'll show you exactly what I'm about to do first."));
+  $("heroDay").textContent = todayStr();
+  setRole(role);
+  setInterval(() => { if (role === "hire") poll(); else if (role === "mgr") renderMgr(); }, 4000);
+
+  // After a demo reset the server restarts: reload so every open page starts fresh and the manager view locks again.
+  let boot = null;
+  setInterval(async () => {
+    try {
+      const b = (await (await fetch("/api/boot")).json()).boot;
+      if (boot && b !== boot) { try { localStorage.removeItem("ub.session"); localStorage.removeItem("ub.wd.after"); } catch (e) {} location.reload(); }
+      boot = b;
+    } catch (e) {}
+  }, 3000);
+
+  // Voice: the ElevenLabs agent answers out loud through the same verifier (/api/voice/ask). Shown only when configured.
+  fetch("/api/voice/config").then(r => r.ok ? r.json() : {}).then(({ agent_id }) => {
+    if (!agent_id) return;
+    const w = document.createElement("elevenlabs-convai");
+    w.setAttribute("agent-id", agent_id);
+    document.body.appendChild(w);
+    const s = document.createElement("script");
+    s.src = "https://unpkg.com/@elevenlabs/convai-widget-embed"; s.async = true;
+    document.body.appendChild(s);
+  }).catch(() => {});
+})();
+</script>
+</body>
+</html>

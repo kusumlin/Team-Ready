@@ -1,0 +1,9 @@
+.git
+.env
+__pycache__
+.pytest_cache
+data/runtime
+outbox
+logs
+eval/results_*.json
+*.png

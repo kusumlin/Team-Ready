@@ -1,0 +1,34 @@
+[
+  {
+    "id": "c-analyst",
+    "name": "Canary Riley",
+    "role": "Data Analyst",
+    "team": "Growth Insights",
+    "office": "US",
+    "manager_id": "p01",
+    "start_doc": "D02",
+    "tasks": ["Get query access to the data warehouse", "Learn the Growth Insights dashboard conventions"]
+  },
+  {
+    "id": "c-engineer",
+    "name": "Canary Noor",
+    "role": "Backend Engineer",
+    "team": "Platform",
+    "office": "US",
+    "manager_id": "p14",
+    "start_doc": "D02",
+    "tasks": ["Set up my local development environment", "Deploy a branch to staging", "Get production access",
+              "Learn what on-call expects of new engineers"]
+  },
+  {
+    "id": "c-designer",
+    "name": "Canary Lea",
+    "role": "Product Designer",
+    "team": "Brand",
+    "office": "EU",
+    "manager_id": "p04",
+    "start_doc": "D02",
+    "tasks": ["Get a Design Cloud editor license", "Book my first vacation days", "Get my building badge",
+              "Enroll in benefits"]
+  }
+]

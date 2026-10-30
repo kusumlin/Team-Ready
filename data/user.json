@@ -1,0 +1,12 @@
+{
+  "id": "u01",
+  "name": "Maya Chen",
+  "role": "Data Analyst",
+  "team": "Growth Insights",
+  "office": "US",
+  "timezone": "America/Los_Angeles",
+  "start_date": "2026-10-05",
+  "manager_id": "p01",
+  "email": "maya.chen@lumen.example",
+  "projects": ["Growth Insights weekly reporting"]
+}

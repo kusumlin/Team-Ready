@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TeamReady Agent Activity</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27%3E%3Crect width=%2724%27 height=%2724%27 rx=%276%27 fill=%27%231f66ff%27/%3E%3Cpath d=%27M5.5 12.5l4 4L18.5 7.5%27 fill=%27none%27 stroke=%27white%27 stroke-width=%273%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E">
+<meta name="description" content="Watch TeamReady's agents work: every message between them, every check, every stop.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #F2F4F3; --ink: #16202E; --muted: #5A6573; --line: #D5DAD8; --card: #FFFFFF;
+  --pine: #1F6B57; --pine-soft: #DCEBE4; --amber: #B97A12; --amber-soft: #F6E7C8;
+  --brick: #B4473B; --brick-soft: #F3DCD8; --sky: #2F5E9E; --sky-soft: #DDE6F3;
+  --plum: #7A4A8C; --plum-soft: #ECE0F1; --node: #FFFFFF; --edge: #C9CFCD;
+  --display: "Bricolage Grotesque", system-ui, sans-serif;
+  --body: "Source Sans 3", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #11171F; --ink: #E6EAEE; --muted: #9AA5B1; --line: #2A3542; --card: #18212C;
+    --pine: #5FB89A; --pine-soft: #17372E; --amber: #E3AD52; --amber-soft: #3A2E17;
+    --brick: #E58276; --brick-soft: #3D2120; --sky: #84A9DE; --sky-soft: #1C2B42;
+    --plum: #C59AD6; --plum-soft: #33243B; --node: #1E2834; --edge: #34404E; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #11171F; --ink: #E6EAEE; --muted: #9AA5B1; --line: #2A3542; --card: #18212C;
+  --pine: #5FB89A; --pine-soft: #17372E; --amber: #E3AD52; --amber-soft: #3A2E17;
+  --brick: #E58276; --brick-soft: #3D2120; --sky: #84A9DE; --sky-soft: #1C2B42;
+  --plum: #C59AD6; --plum-soft: #33243B; --node: #1E2834; --edge: #34404E; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 16px/1.5 var(--body); overflow-wrap: anywhere; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 20px 48px; }
+header { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.brand { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.brand a { font: 700 24px/1 var(--display); font-stretch: 80%; letter-spacing: -0.02em; color: var(--ink); text-decoration: none; }
+h1 { font: 650 24px/1.1 var(--display); font-stretch: 85%; margin: 0; color: var(--muted); }
+.mode { display: inline-flex; align-items: center; gap: 7px; font: 600 13px var(--body); text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 10px; border-radius: 999px; background: var(--pine-soft); color: var(--pine); }
+.mode i { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.mode.live i { animation: blink 1.6s infinite; }
+.mode.replay { background: var(--sky-soft); color: var(--sky); }
+@keyframes blink { 50% { opacity: 0.25; } }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+button { font: 600 15px var(--body); padding: 8px 14px; border-radius: 9px; border: 1px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; }
+button.primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+button[aria-pressed="true"] { border-color: var(--ink); }
+button:disabled { opacity: 0.5; cursor: default; }
+.note { color: var(--muted); font-size: 14px; margin: 0 0 16px; max-width: 80ch; }
+
+.grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.panel { background: var(--card); border: 1px solid var(--line); border-radius: 14px; min-width: 0; }
+.panel h2 { font: 650 14px/1 var(--body); text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); margin: 0; padding: 14px 16px 12px; border-bottom: 1px solid var(--line); }
+#map { display: block; width: 100%; height: auto; }
+.edge { fill: none; stroke: var(--edge); stroke-width: 2; }
+.edge.on { stroke: var(--pine); stroke-width: 2.6; }
+.edge.on.block { stroke: var(--brick); }
+.nd rect { fill: var(--node); stroke: var(--line); stroke-width: 1.5; transition: stroke 0.25s, fill 0.25s; }
+.nd text { fill: var(--ink); font: 600 17px var(--body); }
+.nd .sub { fill: var(--muted); font: 400 13.5px var(--body); }
+.nd.person rect { stroke-dasharray: 5 4; }
+.nd.on rect { stroke: var(--pine); stroke-width: 3; fill: var(--pine-soft); }
+.nd.on.block rect { stroke: var(--brick); fill: var(--brick-soft); }
+.nd.on.check rect { stroke: var(--pine); }
+.nd .count { fill: var(--muted); font: 500 12px var(--mono); }
+.pulse { fill: var(--pine); }
+.pulse.block { fill: var(--brick); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; padding: 0 16px 14px; font-size: 13px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend b { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+
+.strip { display: none; flex-wrap: wrap; gap: 6px; padding: 12px 16px 14px; }
+.strip span { font-size: 13px; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+.strip span.on { border-color: var(--pine); color: var(--pine); background: var(--pine-soft); }
+.strip span.on.block { border-color: var(--brick); color: var(--brick); background: var(--brick-soft); }
+
+#feed { list-style: none; margin: 0; padding: 8px 0; max-height: 640px; overflow-y: auto; }
+#feed li { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 10px; padding: 9px 16px; border-top: 1px solid var(--line); animation: in 0.3s ease-out; }
+#feed li:first-child { border-top: 0; }
+@keyframes in { from { opacity: 0; transform: translateY(6px); } }
+.t { font: 400 12px/1.6 var(--mono); color: var(--muted); }
+.who { font-size: 13px; font-weight: 600; display: flex; flex-wrap: wrap; gap: 4px; align-items: center; margin-bottom: 2px; }
+.tag { padding: 0 7px; border-radius: 5px; background: var(--pine-soft); color: var(--pine); }
+.tag.p { background: var(--sky-soft); color: var(--sky); }
+.tag.c { background: var(--plum-soft); color: var(--plum); }
+.arrow { color: var(--muted); font-weight: 400; }
+.msg { font-size: 15px; }
+li.block .msg { color: var(--brick); font-weight: 600; }
+li.check .msg::before, li.done .msg::before, li.block .msg::before { font: 600 12px var(--body); margin-right: 6px; padding: 0 6px; border-radius: 4px; }
+li.check .msg::before { content: "PASSED"; background: var(--pine-soft); color: var(--pine); }
+li.done .msg::before { content: "DONE"; background: var(--pine-soft); color: var(--pine); }
+li.block .msg::before { content: "STOPPED"; background: var(--brick-soft); color: var(--brick); }
+li.step .msg { color: var(--muted); }
+.empty { padding: 28px 16px; color: var(--muted); text-align: center; }
+
+.ask { display: flex; gap: 8px; padding: 14px 16px; border-top: 1px solid var(--line); flex-wrap: wrap; }
+.ask input { flex: 1 1 220px; min-width: 0; font: inherit; padding: 9px 12px; border: 1px solid var(--line); border-radius: 9px; background: var(--paper); color: var(--ink); }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--line); border-top: 1px solid var(--line); border-radius: 0 0 14px 14px; overflow: hidden; }
+.stats div { background: var(--card); padding: 10px 14px; }
+.stats b { display: block; font: 700 22px/1.1 var(--display); font-stretch: 85%; }
+.stats small { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+@media (max-width: 860px) { .grid { grid-template-columns: minmax(0, 1fr); } #feed { max-height: 70vh; } }
+@media (max-width: 560px) { #map, .legend { display: none; } .strip { display: flex; } .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand"><a href="/" id="home"><span style="color:#1f66ff">Team</span>Ready<svg viewBox="0 0 24 24" width="0.9em" height="0.9em" style="margin-left:2px;vertical-align:-0.05em;fill:none;stroke:#2f72ff;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="M3 13.5l5.5 5L21 5"/></svg></a><h1>Agent Activity</h1><span id="mode" class="mode"><i></i><span id="modeText">Connecting</span></span></div>
+    <div class="controls">
+      <button id="play" class="primary">Pause</button>
+      <button id="speed" aria-label="Replay speed">1×</button>
+      <button id="restart">Restart</button>
+      <button id="toggle">Watch recorded demo</button>
+    </div>
+  </header>
+  <p class="note" id="note">Every message between TeamReady's agents, every check and every stop, as it happens. People's messages are shown only when they hold nothing sensitive; drafted emails are never shown.</p>
+
+  <div class="grid">
+    <section class="panel" aria-label="Agent map">
+      <h2>Who's talking to whom</h2>
+      <svg id="map" viewBox="0 0 980 440" role="img" aria-label="Map of the seven TeamReady agents, the people they work with, and CREAO"></svg>
+      <div class="strip" id="strip"></div>
+      <div class="legend">
+        <span><b style="background:var(--pine)"></b>Message or passed check</span>
+        <span><b style="background:var(--brick)"></b>Stopped or blocked</span>
+        <span><b style="border:1.5px dashed var(--muted)"></b>A person</span>
+      </div>
+      <div class="stats">
+        <div><b id="sMsg">0</b><small>Agent messages</small></div>
+        <div><b id="sChk">0</b><small>Checks passed</small></div>
+        <div><b id="sBlk">0</b><small>Stops</small></div>
+        <div><b id="sDone">0</b><small>Approved actions</small></div>
+      </div>
+    </section>
+
+    <section class="panel" aria-label="Activity feed">
+      <h2>What's happening</h2>
+      <ul id="feed" aria-live="polite"><li class="empty" id="empty">Waiting for the agents. Ask a question below, or message TeamReady in ASI:One.</li></ul>
+      <form class="ask" id="ask">
+        <input id="q" placeholder="Ask as the new hire, e.g. How do I deploy to staging?" aria-label="Question">
+        <button class="primary" type="submit">Ask</button>
+      </form>
+    </section>
+  </div>
+</div>
+
+<script id="replay-data" type="application/json">[]</script>
+<script>
+(() => {
+  const NODES = {
+    user:           { x: 100, y: 110, label: "New hire", sub: "Maya, in ASI:One", person: true },
+    manager_person: { x: 100, y: 260, label: "Manager", sub: "Jordan, a person", person: true },
+    people_ops:     { x: 100, y: 405, label: "People Ops", sub: "a person", person: true },
+    tracker:        { x: 365, y: 35,  label: "Tracker", sub: "follow-ups" },
+    orchestrator:   { x: 365, y: 140, label: "Orchestrator", sub: "risk gate · Guardian" },
+    manager:        { x: 365, y: 260, label: "Manager agent", sub: "approval gate" },
+    knowledge:      { x: 640, y: 50,  label: "Knowledge", sub: "verified answers" },
+    routing:        { x: 640, y: 145, label: "Routing", sub: "who to ask, fairly" },
+    people:         { x: 640, y: 285, label: "Email", sub: "only after approval", person: true },
+    insights:       { x: 640, y: 405, label: "Insights", sub: "Friction Map · FET" },
+    creao:          { x: 880, y: 405, label: "CREAO", sub: "Doc Steward agent", creao: true },
+    canary:         { x: 880, y: 50,  label: "Canary", sub: "synthetic new hires" },
+    systems:        { x: 640, y: 215, label: "Lumen systems", sub: "Slack · IT · Learning · Access", person: true },
+  };
+  const EDGES = [["user","orchestrator"],["orchestrator","knowledge"],["orchestrator","routing"],["orchestrator","tracker"],
+    ["orchestrator","manager"],["orchestrator","insights"],["orchestrator","people"],["tracker","user"],["tracker","people"],
+    ["manager_person","manager"],["people_ops","insights"],["insights","creao"],["insights","people"],
+    ["canary","knowledge"],["canary","creao"],["canary","people"],["orchestrator","systems"]];
+  const NAME = Object.fromEntries(Object.entries(NODES).map(([k, v]) => [k, v.label]));
+  const W = 176, H = 56;
+  const svg = document.getElementById("map"), ns = "http://www.w3.org/2000/svg";
+  const el = (t, a, p) => { const e = document.createElementNS(ns, t); for (const k in a) e.setAttribute(k, a[k]); (p || svg).appendChild(e); return e; };
+  const edgeKey = (a, b) => [a, b].sort().join("|");
+  const paths = {};
+  for (const [a, b] of EDGES) {
+    const A = NODES[a], B = NODES[b];
+    let d;
+    if (A.x === B.x || A.y === B.y) d = `M${A.x} ${A.y} L${B.x} ${B.y}`;
+    else {  // leave from the side facing the other node, so lines run in the gaps between columns
+      const s = B.x > A.x ? 1 : -1, x1 = A.x + s * W / 2, x2 = B.x - s * W / 2, mx = (x1 + x2) / 2;
+      d = `M${A.x} ${A.y} L${x1} ${A.y} C${mx} ${A.y} ${mx} ${B.y} ${x2} ${B.y} L${B.x} ${B.y}`;
+    }
+    paths[edgeKey(a, b)] = el("path", { class: "edge", d });
+  }
+  const nodeEls = {}, counts = {};
+  for (const [k, n] of Object.entries(NODES)) {
+    const g = el("g", { class: "nd" + (n.person ? " person" : ""), transform: `translate(${n.x - W / 2} ${n.y - H / 2})` });
+    el("rect", { width: W, height: H, rx: 11 }, g);
+    if (n.creao) el("rect", { width: 6, height: H - 16, x: 8, y: 8, rx: 3, style: "fill:var(--plum);stroke:none" }, g);
+    const t = el("text", { x: n.creao ? 22 : 14, y: 22 }, g); t.textContent = n.label;
+    const s = el("text", { x: n.creao ? 22 : 14, y: 40, class: "sub" }, g); s.textContent = n.sub;
+    counts[k] = el("text", { x: W - 12, y: 22, class: "count", "text-anchor": "end" }, g);
+    nodeEls[k] = g;
+  }
+  const strip = document.getElementById("strip"), stripEls = {};
+  for (const [k, n] of Object.entries(NODES)) { const s = document.createElement("span"); s.textContent = n.label; strip.appendChild(s); stripEls[k] = s; }
+
+  const tally = {}, stat = { message: 0, check: 0, block: 0, done: 0 };
+  function flash(k, cls) {
+    for (const target of [nodeEls[k], stripEls[k]]) {
+      if (!target) continue;
+      target.classList.remove("on", "block", "check");
+      void target.getBoundingClientRect();
+      target.classList.add("on"); if (cls) target.classList.add(cls);
+      clearTimeout(target._t); target._t = setTimeout(() => target.classList.remove("on", "block", "check"), 1400);
+    }
+  }
+  function pulse(a, b, block) {
+    const p = paths[edgeKey(a, b)]; if (!p) return;
+    p.classList.add("on"); p.classList.toggle("block", !!block);
+    clearTimeout(p._t); p._t = setTimeout(() => p.classList.remove("on", "block"), 1200);
+    const len = p.getTotalLength(), forward = p.getAttribute("d").startsWith(`M${NODES[a].x} ${NODES[a].y}`);
+    const dot = el("circle", { r: 6, class: "pulse" + (block ? " block" : "") });
+    const t0 = performance.now(), dur = 650;
+    (function step(now) {
+      const f = Math.min(1, (now - t0) / dur), pt = p.getPointAtLength((forward ? f : 1 - f) * len);
+      dot.setAttribute("cx", pt.x); dot.setAttribute("cy", pt.y);
+      if (f < 1) requestAnimationFrame(step); else dot.remove();
+    })(t0);
+  }
+
+  const feed = document.getElementById("feed"), empty = document.getElementById("empty");
+  const tagClass = k => (NODES[k] && NODES[k].person) ? "tag p" : k === "creao" ? "tag c" : "tag";
+  function show(e, live) {
+    if (empty.isConnected) empty.remove();
+    const from = NODES[e.from] ? e.from : "user", to = NODES[e.to] ? e.to : "";
+    const li = document.createElement("li"); li.className = e.kind;
+    const time = new Date(e.ts * 1000);
+    const t = document.createElement("span"); t.className = "t";
+    t.textContent = time.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false });
+    const body = document.createElement("div");
+    const who = document.createElement("div"); who.className = "who";
+    const a = document.createElement("span"); a.className = tagClass(from); a.textContent = NAME[from]; who.appendChild(a);
+    if (to) {
+      const arr = document.createElement("span"); arr.className = "arrow"; arr.textContent = "→"; who.appendChild(arr);
+      const b = document.createElement("span"); b.className = tagClass(to); b.textContent = NAME[to]; who.appendChild(b);
+    }
+    const msg = document.createElement("div"); msg.className = "msg"; msg.textContent = e.text;
+    body.append(who, msg); li.append(t, body);
+    feed.appendChild(li);
+    while (feed.children.length > 400) feed.firstElementChild.remove();
+    const nearBottom = feed.scrollHeight - feed.scrollTop - feed.clientHeight < 160;
+    if (nearBottom || live === "replay") feed.scrollTop = feed.scrollHeight;
+    flash(from, e.kind === "block" ? "block" : e.kind === "check" ? "check" : "");
+    if (to) { pulse(from, to, e.kind === "block"); setTimeout(() => flash(to, ""), 550); }
+    tally[from] = (tally[from] || 0) + 1; counts[from].textContent = tally[from];
+    if (e.kind in stat) stat[e.kind]++;
+    document.getElementById("sMsg").textContent = feedCount.msg += (e.kind === "message" && to && !NODES[from].person && !NODES[to].person) ? 1 : 0;
+    document.getElementById("sChk").textContent = stat.check;
+    document.getElementById("sBlk").textContent = stat.block;
+    document.getElementById("sDone").textContent = stat.done;
+  }
+  const feedCount = { msg: 0 };
+  function reset() {
+    feed.replaceChildren(empty); for (const k in tally) delete tally[k];
+    for (const k in counts) counts[k].textContent = ""; for (const k in stat) stat[k] = 0; feedCount.msg = 0;
+    ["sMsg", "sChk", "sBlk", "sDone"].forEach(id => document.getElementById(id).textContent = "0");
+  }
+
+  // ---- modes ----
+  const embedded = JSON.parse(document.getElementById("replay-data").textContent || "[]");
+  const modeEl = document.getElementById("mode"), modeText = document.getElementById("modeText");
+  const playBtn = document.getElementById("play"), speedBtn = document.getElementById("speed");
+  const restartBtn = document.getElementById("restart"), toggleBtn = document.getElementById("toggle");
+  const askForm = document.getElementById("ask"), note = document.getElementById("note");
+  let mode = "live", serverOk = false, after = 0, pollTimer = null;
+  let replay = [], idx = 0, playing = true, speed = 1, rTimer = null;
+
+  function setMode(m) {
+    mode = m; clearTimeout(rTimer); clearTimeout(pollTimer); reset();
+    modeEl.className = "mode " + m; modeText.textContent = m === "live" ? "Live" : "Replay";
+    playBtn.hidden = speedBtn.hidden = restartBtn.hidden = m === "live";
+    askForm.hidden = m !== "live" || !serverOk;
+    toggleBtn.hidden = !serverOk || (!replay.length && m === "live");
+    toggleBtn.textContent = m === "live" ? "Watch recorded demo" : "Back to live";
+    if (m === "replay") {
+      note.textContent = "A recording of all six agents running together locally (Oct 17), plus the People Ops flow with CREAO. "
+        + "In this recording the CREAO run used a test stand-in; the live version calls the real Doc Steward. People's messages are shown only when they hold nothing sensitive.";
+      idx = 0; playing = true; playBtn.textContent = "Pause"; tick();
+    } else {
+      note.textContent = "Every message between TeamReady's agents, every check and every stop, as it happens. People's messages are shown only when they hold nothing sensitive; drafted emails are never shown.";
+      after = 0; poll(true);
+    }
+  }
+  function tick() {
+    if (mode !== "replay" || !playing) return;
+    if (idx >= replay.length) { playBtn.textContent = "Play again"; playing = false; return; }
+    show(replay[idx], "replay");
+    const gap = idx + 1 < replay.length ? (replay[idx + 1].ts - replay[idx].ts) * 1000 : 0;
+    idx++;
+    rTimer = setTimeout(tick, Math.max(320, Math.min(gap, 1500)) / speed);
+  }
+  playBtn.onclick = () => {
+    if (!playing && idx >= replay.length) { reset(); idx = 0; }
+    playing = !playing; playBtn.textContent = playing ? "Pause" : "Play"; if (playing) tick(); else clearTimeout(rTimer);
+  };
+  speedBtn.onclick = () => { speed = speed === 1 ? 2 : speed === 2 ? 4 : 1; speedBtn.textContent = speed + "×"; };
+  restartBtn.onclick = () => { clearTimeout(rTimer); reset(); idx = 0; playing = true; playBtn.textContent = "Pause"; tick(); };
+  toggleBtn.onclick = () => setMode(mode === "live" ? "replay" : "live");
+
+  async function poll(first) {
+    if (mode !== "live") return;
+    try {
+      const r = await fetch("/api/activity?after=" + after, { cache: "no-store" });
+      const data = await r.json();
+      // On first load, show only the last few minutes, so the page starts clean.
+      let events = data.events;
+      if (first) events = events.filter(e => e.ts > Date.now() / 1000 - 600).slice(-60);
+      for (const e of events) show(e, "live");
+      if (data.events.length) after = data.events[data.events.length - 1].id;
+    } catch (e) { /* server busy; try again */ }
+    pollTimer = setTimeout(poll, 1500);
+  }
+  askForm.onsubmit = async ev => {
+    ev.preventDefault();
+    const q = document.getElementById("q").value.trim(); if (!q) return;
+    const btn = askForm.querySelector("button"); btn.disabled = true;
+    try { await fetch("/api/ask", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ question: q }) }); }
+    catch (e) { /* the feed shows what happened */ }
+    btn.disabled = false;
+  };
+
+  (async () => {
+    try {
+      const r = await fetch("/api/activity?after=" + (Date.now() * 1e6), { cache: "no-store" });
+      serverOk = r.ok && (r.headers.get("content-type") || "").includes("json");
+    } catch (e) { serverOk = false; }
+    if (serverOk) {
+      try { const r = await fetch("/api/activity/replay"); if (r.ok) replay = await r.json(); } catch (e) {}
+      if (!replay.length) replay = embedded;
+      setMode("live");
+    } else {
+      replay = embedded; document.getElementById("home").removeAttribute("href");
+      setMode("replay");
+    }
+  })();
+})();
+</script>
+</body>
+</html>
